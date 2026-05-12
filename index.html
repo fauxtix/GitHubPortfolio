@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Fausto Luís | Programação / Analise
+    </title>
+
+    <meta name="color-scheme" content="dark light">
+
+    <!-- SEO -->
+    <meta name="description"
+        content="Portfolio de João Silva, software engineer especializado em backend, APIs e automação.">
+
+    <meta name="keywords" content="developer, portfolio, github, backend, java, python">
+
+    <meta name="author" content="João Silva">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="João Silva Portfolio">
+
+    <meta property="og:description" content="Projetos e repositórios GitHub">
+
+    <meta property="og:image" content="assets/avatar.png">
+
+    <meta property="og:type" content="website">
+
+    <!-- Theme -->
+    <meta name="theme-color" content="#09090b">
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- TOPBAR -->
+
+    <header class="topbar">
+
+        <div class="brand">
+            🚀 Portfolio
+        </div>
+
+        <nav class="nav">
+
+            <a href="#repos">Repositórios</a>
+
+            <a href="profile.html">Perfil</a>
+
+            <a href="https://github.com/fauxtix" target="_blank">GitHub</a>
+
+            <button id="toggleTheme">🌙 Theme</button>
+
+        </nav>
+    </header>
+
+    <!-- HERO -->
+
+    <!-- <header class="hero">
+
+        <div class="container">
+
+            <img id="avatar" class="avatar" src="assets/images/MyPhoto.jpg" alt="Avatar de Fausto Luís">
+
+            <h1 id="name"></h1>
+
+            <p id="bio"></p>
+
+        </div>
+
+    </header> -->
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <input type="text" id="searchInput" placeholder="Pesquisar projetos...">
+
+        <select id="languageFilter">
+
+            <option value="all">
+                Todas
+            </option>
+
+        </select>
+
+    </section>
+
+    <!-- REPOSITORIES -->
+
+    <section id="repos">
+
+        <div id="repoGrid" class="repo-grid"></div>
+
+    </section>
+
+    <!-- MODAL -->
+
+    <div id="modal" class="modal hidden">
+
+        <div class="modal-content">
+
+            <button id="closeModal">
+                ✕
+            </button>
+
+            <div id="modalBody" class="modal-body"></div>
+
+        </div>
+
+    </div>
+
+    <!-- SCRIPTS -->
+
+    <script src="config.js"></script>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
