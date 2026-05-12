@@ -63,13 +63,6 @@ A responsive web portfolio that showcases your GitHub repositories, profile info
 - Tailor the HTML or CSS for your branding.
 
 ---
-
-## License
-
-[MIT](LICENSE)
-
----
-
 ## Author
 
 [Fausto Luís](https://github.com/fauxtix)
