@@ -30,7 +30,7 @@
 
         <div class="container">
 
-            <img class="avatar" src="assets/images/MyPhoto.jpg" alt="Avatar de João Silva">
+            <img class="avatar" src="assets/images/MyPhoto.jpg" alt="Fausto Luís avatar">
 
             <h1 id="name"></h1>
 
@@ -54,12 +54,12 @@
                 const data = await res.json();
 
                 document.getElementById("name").textContent = data.name || data.login;
-                document.getElementById("bio").textContent = data.bio || "Sem bio disponível";
+                document.getElementById("bio").textContent = data.bio || "No Bio available";
 
                 document.querySelector(".avatar").src = data.avatar_url;
 
             } catch (e) {
-                console.error("Erro ao carregar perfil:", e);
+                console.error("Error while loading profile:", e);
             }
         }
 

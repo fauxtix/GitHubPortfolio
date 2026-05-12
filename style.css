@@ -166,10 +166,10 @@ body.dark {
     padding: 24px;
 }
 
-input,
-select {
 
+input {
     padding: 12px 16px;
+    width: 60vh;
     border-radius: 14px;
 
     border: 1px solid rgba(0, 0, 0, 0.08);
@@ -179,10 +179,12 @@ select {
     outline: none;
 }
 
-body.dark input,
-body.dark select {
+body.dark input {
+    padding: 12px 16px;
     background: #18181b;
+    width: 60vh;
     color: white;
+    border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
