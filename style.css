@@ -64,7 +64,6 @@
             margin-right: 2px;
         }
 
-        /* Traffic Insights Modal Info Groups */
         .traffic-summary {
             display: flex;
             flex-direction: row;
@@ -87,7 +86,6 @@
             box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12);
         }
 
-        /* Compact summary card in traffic modal */
         .traffic-summary-card {
             padding: 5px 10px 5px 10px !important;
             min-height: unset !important;
@@ -217,7 +215,6 @@
             color: #aaa;
         }
 
-        /* LOGIN PAGE */
         .login-container {
             max-width: 350px;
             margin: 60px auto;
@@ -293,7 +290,6 @@
             color: #aaa;
         }
 
-        /* Brand link as nav button */
         .brand .nav-btn {
             color: white;
             text-decoration: none;
@@ -321,7 +317,6 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        /* HAMBURGER MENU */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -381,7 +376,6 @@
             }
         }
 
-        /* Hamburger animation when open */
         .hamburger.open span:nth-child(1) {
             transform: translateY(7px) rotate(45deg);
         }
@@ -429,14 +423,12 @@
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* DARK MODE */
 
         body.dark {
             background: var(--bg-dark);
             color: var(--text-dark);
         }
 
-        /* TOPBAR */
 
         .topbar {
 
@@ -514,7 +506,6 @@
             font-family: inherit;
         }
 
-        /* HERO */
 
         .hero {
             min-height: 40vh;
@@ -550,7 +541,6 @@
             line-height: 1.6;
         }
 
-        /* SEARCH */
 
         .search-section {
 
@@ -588,8 +578,6 @@
             max-width: 100%;
         }
 
-        /* GRID */
-
         .repo-grid {
 
             display: grid;
@@ -598,9 +586,6 @@
 
             padding: 40px;
         }
-
-        /* CARDS */
-
 
         .repo-card {
             display: flex;
@@ -627,7 +612,6 @@
             background: rgba(245, 245, 255, 0.95);
         }
 
-        /* Icon area for repo cards */
         .repo-icon {
             width: 48px;
             height: 48px;
@@ -720,13 +704,7 @@
             box-shadow: 0 2px 8px rgba(99, 102, 241, 0.15);
         }
 
-        .repo-actions button,
-        .repo-actions a {
-            /* removed duplicate styles for compactness */
-        }
-        }
 
-        /* PRIMARY BUTTON */
         .read-more {
             background: #18181b;
             color: white;
@@ -738,7 +716,6 @@
             color: black;
         }
 
-        /* SECONDARY LINK */
         .repo-actions a {
             background: transparent;
             border: 1px solid rgba(0, 0, 0, 0.15);
@@ -750,14 +727,12 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* hover */
         .repo-actions button:hover,
         .repo-actions a:hover {
             transform: translateY(-2px);
             opacity: 0.9;
         }
 
-        /* MODAL */
 
         .modal {
 
@@ -843,7 +818,6 @@
             color: inherit;
         }
 
-        /* MARKDOWN */
 
         .markdown-body {
 
@@ -932,7 +906,6 @@
             margin: 20px 0;
         }
 
-        /* FIXES NOVOS (IMPORTANTE) */
 
         .modal-body {
             overflow-y: auto;

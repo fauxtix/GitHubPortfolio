@@ -286,7 +286,7 @@ async function loadReadme(owner, repo) {
     `https://api.github.com/repos/${owner}/${repo}/readme`,
   );
 
-  if (!res.ok) return "<p>README não encontrado</p>";
+  if (!res.ok) return "<p>README not found</p>";
 
   const data = await res.json();
   const markdown = decodeURIComponent(
@@ -355,10 +355,9 @@ async function loadProfile() {
 
     document.getElementById("avatar").src = data.avatar_url;
     document.getElementById("name").textContent = data.name || data.login;
-    document.getElementById("bio").textContent =
-      data.bio || "Sem bio disponível";
+    document.getElementById("bio").textContent = data.bio || "No Bio available";
   } catch (e) {
-    console.error("Erro ao carregar perfil:", e);
+    console.error("Error loading profile:", e);
   }
 }
 
