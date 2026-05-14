@@ -67,18 +67,18 @@
 
     <!-- SEARCH -->
 
-    <section class="search-section">
 
-        <input type="text" id="searchInput" placeholder="Search projects...">
-
+    <section class="search-section" style="position:relative;display:flex;justify-content:center;align-items:center;">
+        <input type="text" id="searchInput" placeholder="Search projects..." style="padding-right:40px;">
+        <button id="clearSearchBtn" title="Clear search" aria-label="Clear search"
+            style="position:absolute;right:calc(50% - 30vh + 24px);top:50%;transform:translateY(-50%);padding:0 8px;font-size:1.2em;line-height:1.2;cursor:pointer;background:none;border:none;outline:none;display:none;z-index:2;">
+            <span aria-hidden="true">✖</span>
+        </button>
         <!-- <select id="languageFilter">
-
             <option value="all">
                 Todas
             </option>
-
         </select> -->
-
     </section>
 
     <!-- REPOSITORIES -->

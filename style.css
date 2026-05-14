@@ -1,3 +1,36 @@
+    /* Clear search button styling */
+    #clearSearchBtn {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: none;
+        background: transparent;
+        color: #444;
+        font-size: 1.2em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s, color 0.2s;
+        cursor: pointer;
+        outline: none;
+        box-shadow: none;
+    }
+
+    #clearSearchBtn:hover, #clearSearchBtn:focus {
+        background: #ececec;
+        color: #c00;
+    }
+
+    body.dark #clearSearchBtn {
+        background: transparent;
+        color: #ccc;
+    }
+
+    body.dark #clearSearchBtn:hover, body.dark #clearSearchBtn:focus {
+        background: #23232a;
+        color: #ff5c5c;
+    }
+
     /* Removed invalid property block at top of file */
 
     body.dark .traffic-group {
@@ -356,6 +389,14 @@
         .nav.open {
             display: flex;
             transform: translateX(0);
+        }
+
+        .nav.open a,
+        .nav.open button {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
         }
 
         .hamburger {

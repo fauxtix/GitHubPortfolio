@@ -52,6 +52,8 @@ const closeModal = document.getElementById("closeModal");
 const searchInput = document.getElementById("searchInput");
 const languageFilter = document.getElementById("languageFilter");
 
+const clearSearchBtn = document.getElementById("clearSearchBtn");
+
 let repositories = [];
 
 /* THEME */
@@ -320,9 +322,9 @@ function bindReadMoreButtons() {
 }
 
 /* FILTER */
+
 searchInput.addEventListener("input", () => {
   const q = searchInput.value.toLowerCase();
-
   renderRepositories(
     repositories.filter(
       (r) =>
@@ -330,6 +332,17 @@ searchInput.addEventListener("input", () => {
         (r.description || "").toLowerCase().includes(q),
     ),
   );
+  clearSearchBtn.style.display = q ? "flex" : "none";
+});
+
+// Show/hide clear button on load
+clearSearchBtn.style.display = searchInput.value ? "flex" : "none";
+
+clearSearchBtn.addEventListener("click", () => {
+  searchInput.value = "";
+  renderRepositories(repositories);
+  clearSearchBtn.style.display = "none";
+  searchInput.focus();
 });
 
 /* MODAL */
