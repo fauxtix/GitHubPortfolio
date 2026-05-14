@@ -329,6 +329,10 @@
         background: #fff;
     }
 
+    body:not(.dark) .hamburger span {
+        background: #18181b;
+    }
+
     @media (max-width: 700px) {
         .nav {
             display: none;
@@ -360,6 +364,20 @@
 
         .topbar {
             padding-right: 8px;
+        }
+    }
+
+    @media (max-width: 700px) {
+        body:not(.dark) .nav {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: -2px 0 16px rgba(0, 0, 0, 0.08);
+        }
+
+        body:not(.dark) .nav a,
+        body:not(.dark) .nav button {
+            color: #18181b;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.08);
         }
     }
 

@@ -6,11 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | GitHub Insights</title>
     <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
 </head>
 
 <body>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
+    <a href="index.html" class="back-home-link"
+        style="position:absolute;top:18px;left:18px;text-decoration:none;color:#007bff;font-weight:500;">&larr; Back to
+        Home</a>
+
+    <!-- Themed background for login page -->
+    <div class="login-bg"></div>
+
     <div class="login-container">
-        <h2>GitHub Login</h2>
+        <img src="assets/images/MyPhoto.jpg" alt="Site Logo" class="login-logo"
+            style="width:64px;height:64px;border-radius:16px;margin-bottom:14px;box-shadow:0 2px 8px rgba(0,0,0,0.10);">
+        <h1 class="login-title" style="margin-bottom:8px;font-size:1.6rem;font-weight:700;letter-spacing:-1px;">GitHub
+            Insights</h1>
+        <h2 class="login-subtitle">Sign in to continue</h2>
         <form id="loginForm">
             <label for="token">Personal Access Token</label>
             <input type="password" id="token" name="token" placeholder="GitHub Token" required>
