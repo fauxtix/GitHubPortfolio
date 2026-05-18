@@ -10,16 +10,48 @@ document
     if (errorMsg) errorMsg.textContent = "";
     if (token) {
       // Validate token by calling the /user endpoint
+      const CACHE_DURATION = 60 * 60 * 1000; // 60 minutes in ms
+      function getCache(key) {
+        try {
+          const cached = localStorage.getItem(key);
+          if (!cached) return null;
+          const { value, expires } = JSON.parse(cached);
+          if (Date.now() > expires) {
+            localStorage.removeItem(key);
+            return null;
+          }
+          return value;
+        } catch {
+          return null;
+        }
+      }
+      function setCache(key, value) {
+        localStorage.setItem(key, JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }));
+      }
+      async function fetchWithCache(url, options = {}) {
+        const cacheKey = `cache::${url}`;
+        const cached = getCache(cacheKey);
+        if (cached) return cached;
+        const res = await fetch(url, options);
+        if (!res.ok) throw new Error(`Failed to fetch: ${url}`);
+        const data = await res.json();
+        setCache(cacheKey, data);
+        return data;
+      }
       try {
-        const res = await fetch("https://api.github.com/user", {
-          headers: { Authorization: `token ${token}` },
-        });
-        if (res.ok) {
+        const url = "https://api.github.com/user";
+        let data;
+        try {
+          data = await fetchWithCache(url, { headers: { Authorization: `token ${token}` } });
+        } catch (err) {
+          showLoginError("Invalid token.");
+          return;
+        }
+        if (data && data.login) {
           sessionStorage.setItem("github_token", token);
           window.location.href = "index.html";
         } else {
-          const data = await res.json();
-          showLoginError(data.message || "Invalid token.");
+          showLoginError("Invalid token.");
         }
       } catch (err) {
         showLoginError("Network error. Try again.");

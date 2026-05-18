@@ -81,19 +81,56 @@ function initializeTheme() {
 toggleThemeButton.addEventListener("click", toggleTheme);
 
 /* GITHUB */
+const CACHE_DURATION = 60 * 60 * 1000; // 60 minutes in ms
+
+function getCache(key) {
+  try {
+    const cached = localStorage.getItem(key);
+    if (!cached) return null;
+    const { value, expires } = JSON.parse(cached);
+    if (Date.now() > expires) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return value;
+  } catch {
+    return null;
+  }
+}
+
+function setCache(key, value) {
+  localStorage.setItem(key, JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }));
+}
+
+async function fetchWithCache(url, options = {}) {
+  const cacheKey = `cache::${url}`;
+  const cached = getCache(cacheKey);
+  if (cached) return cached;
+  const res = await fetch(url, options);
+  if (!res.ok) throw new Error(`Failed to fetch: ${url}`);
+  const data = await res.json();
+  setCache(cacheKey, data);
+  return data;
+}
+
 async function loadRepositories() {
   const headers = {};
   const token = sessionStorage.getItem("github_token");
   if (token) headers["Authorization"] = `token ${token}`;
-  const res = await fetch(
-    `https://api.github.com/users/${CONFIG.githubUser}/repos?sort=updated`,
-    { headers },
-  );
-
-  const data = await res.json();
-
-  repositories = data;
-
+  let data = [];
+  let errorMsg = null;
+  try {
+    const url = `https://api.github.com/users/${CONFIG.githubUser}/repos?sort=updated`;
+    data = await fetchWithCache(url, { headers });
+  } catch (e) {
+    errorMsg = "Network error while fetching repositories.";
+    data = [];
+  }
+  repositories = Array.isArray(data) ? data : [];
+  if (errorMsg) {
+    repoGrid.innerHTML = `<div class='repo-card' style='color:#c00;text-align:center;'>${errorMsg}</div>`;
+    return;
+  }
   renderRepositories(repositories);
   populateLanguages(repositories);
 }
@@ -101,6 +138,10 @@ async function loadRepositories() {
 /* RENDER */
 function renderRepositories(repos) {
   repoGrid.innerHTML = "";
+  if (!Array.isArray(repos)) {
+    repoGrid.innerHTML = `<div class='repo-card' style='color:#c00;text-align:center;'>Error: Invalid repository data.</div>`;
+    return;
+  }
 
   // Helper to pick an icon based on language
   function getLanguageIcon(language) {
@@ -211,21 +252,21 @@ function renderRepositories(repos) {
             return;
           }
           const [viewsRes, clonesRes] = await Promise.all([
-            fetch(
+            fetchWithCache(
               `https://api.github.com/repos/${owner}/${repo}/traffic/views`,
               {
                 headers: { Authorization: `token ${token}` },
               },
             ),
-            fetch(
+            fetchWithCache(
               `https://api.github.com/repos/${owner}/${repo}/traffic/clones`,
               {
                 headers: { Authorization: `token ${token}` },
               },
             ),
           ]);
-          const views = await viewsRes.json();
-          const clones = await clonesRes.json();
+          const views = viewsRes;
+          const clones = clonesRes;
 
           // Handle API errors or missing permissions
           if (views.message || clones.message) {
@@ -284,26 +325,19 @@ function renderRepositories(repos) {
 
 /* README */
 async function loadReadme(owner, repo) {
-  const res = await fetch(
-    `https://api.github.com/repos/${owner}/${repo}/readme`,
-  );
-
-  if (!res.ok) return "<p>README not found</p>";
-
-  const data = await res.json();
+  const url = `https://api.github.com/repos/${owner}/${repo}/readme`;
+  let data;
+  try {
+    data = await fetchWithCache(url);
+  } catch {
+    return "<p>README not found</p>";
+  }
   const markdown = decodeURIComponent(
     Array.from(atob(data.content))
       .map((c) => "%" + c.charCodeAt(0).toString(16).padStart(2, "0"))
       .join(""),
   );
-
-  const html = marked.parse(markdown);
-
-  return `
-  <div class="markdown-body">
-    ${html}
-  </div>
-`;
+  return `<div class='readme'>${marked.parse(markdown)}</div>`;
 }
 
 /* BUTTONS */
@@ -361,11 +395,8 @@ async function init() {
 
 async function loadProfile() {
   try {
-    const res = await fetch(
-      "https://api.github.com/users/" + CONFIG.githubUser,
-    );
-    const data = await res.json();
-
+    const url = "https://api.github.com/users/" + CONFIG.githubUser;
+    const data = await fetchWithCache(url);
     document.getElementById("avatar").src = data.avatar_url;
     document.getElementById("name").textContent = data.name || data.login;
     document.getElementById("bio").textContent = data.bio || "No Bio available";

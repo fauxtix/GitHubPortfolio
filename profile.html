@@ -48,10 +48,36 @@
         })();
     </script>
     <script>
+        const CACHE_DURATION = 60 * 60 * 1000;
+        function getCache(key) {
+            try {
+                const cached = localStorage.getItem(key);
+                if (!cached) return null;
+                const { value, expires } = JSON.parse(cached);
+                if (Date.now() > expires) {
+                    localStorage.removeItem(key);
+                    return null;
+                }
+                return value;
+            } catch { return null; }
+        }
+        function setCache(key, value) {
+            localStorage.setItem(key, JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }));
+        }
+        async function fetchWithCache(url, options = {}) {
+            const cacheKey = `cache::${url}`;
+            const cached = getCache(cacheKey);
+            if (cached) return cached;
+            const res = await fetch(url, options);
+            if (!res.ok) throw new Error(`Failed to fetch: ${url}`);
+            const data = await res.json();
+            setCache(cacheKey, data);
+            return data;
+        }
         async function loadProfile() {
             try {
-                const res = await fetch("https://api.github.com/users/fauxtix");
-                const data = await res.json();
+                const url = "https://api.github.com/users/fauxtix";
+                const data = await fetchWithCache(url);
 
                 document.getElementById("name").textContent = data.name || data.login;
                 document.getElementById("bio").textContent = data.bio || "No Bio available";

@@ -1,3 +1,11 @@
+.repo-card a {
+        color: #2563eb;
+        text-decoration: underline;
+        transition: color 0.2s;
+    }
+    body.dark .repo-card a {
+        color: #a78bfa;
+    }
     /* Clear search button styling */
     #clearSearchBtn {
         width: 32px;
@@ -625,15 +633,15 @@
     }
 
     .repo-grid {
-
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(410px, 1fr));
         gap: 24px;
-
         padding: 40px;
     }
 
     .repo-card {
+        /* Remove max-width and margin for grid layout */
+        width: auto;
         display: flex;
         flex-direction: column;
         background: rgba(255, 255, 255, 0.85);
@@ -975,4 +983,46 @@
 
     .markdown-body pre {
         overflow-x: auto;
+    }
+
+    .issues-prs-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        align-items: stretch;
+        min-height: 120px;
+    }
+    @media (min-width: 600px) {
+        .issues-prs-flex {
+            flex-direction: row;
+            gap: 0;
+        }
+    }
+    .issues-col, .prs-col {
+        flex: none;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+    }
+    .issues-prs-header {
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+    .issues-prs-list {
+        overflow-y: auto;
+        max-height: 220px;
+        padding-left: 18px;
+        margin-bottom: 0;
+    }
+    .issues-prs-divider {
+        height: 1.5px;
+        width: 100%;
+        background: rgba(120,120,140,0.18);
+        margin: 18px 0;
+        display: block;
+    }
+    @media (min-width: 600px) {
+        .issues-prs-divider {
+            display: block;
+        }
     }
