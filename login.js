@@ -10,7 +10,7 @@ document
     if (errorMsg) errorMsg.textContent = "";
     if (token) {
       // Validate token by calling the /user endpoint
-      const CACHE_DURATION = 60 * 60 * 1000; // 60 minutes in ms
+      const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
       function getCache(key) {
         try {
           const cached = localStorage.getItem(key);

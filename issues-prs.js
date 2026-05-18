@@ -1,5 +1,5 @@
 const reposContainer = document.getElementById("repos-container");
-const CACHE_DURATION = 60 * 60 * 1000; // 60 minutes in ms
+const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
 
 function getAuthHeaders() {
   const token = sessionStorage.getItem("github_token");
