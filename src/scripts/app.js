@@ -12,7 +12,7 @@ function updateAuthBtn() {
   } else {
     authBtn.textContent = "🔑 Login";
     authBtn.onclick = () => {
-      window.location.href = "login.html";
+      window.location.href = "./src/pages/login.html";
     };
   }
 }
@@ -99,7 +99,10 @@ function getCache(key) {
 }
 
 function setCache(key, value) {
-  localStorage.setItem(key, JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }));
+  localStorage.setItem(
+    key,
+    JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }),
+  );
 }
 
 async function fetchWithCache(url, options = {}) {

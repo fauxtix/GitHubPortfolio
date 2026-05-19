@@ -15,6 +15,39 @@
   }
 })();
 
+// --- Caching logic (copied from app.js) ---
+const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
+function getCache(key) {
+  try {
+    const cached = localStorage.getItem(key);
+    if (!cached) return null;
+    const { value, expires } = JSON.parse(cached);
+    if (Date.now() > expires) {
+      localStorage.removeItem(key);
+      return null;
+    }
+    return value;
+  } catch {
+    return null;
+  }
+}
+function setCache(key, value) {
+  localStorage.setItem(
+    key,
+    JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }),
+  );
+}
+async function fetchWithCache(url, options = {}) {
+  const cacheKey = `cache::${url}`;
+  const cached = getCache(cacheKey);
+  if (cached) return cached;
+  const res = await fetch(url, options);
+  if (!res.ok) throw new Error(`Failed to fetch: ${url}`);
+  const data = await res.json();
+  setCache(cacheKey, data);
+  return data;
+}
+
 document
   .getElementById("downloadPdfBtn")
   .addEventListener("click", async function () {
@@ -22,16 +55,15 @@ document
       alert("PDF library not loaded yet. Please try again in a moment.");
       return;
     }
-    // (removed duplicate doc declaration)
-    // Fetch profile
+    // Fetch profile and repos with cache
     const user = window.CONFIG?.githubUser || "fauxtix";
     const profileUrl = `https://api.github.com/users/${user}`;
     const reposUrl = `https://api.github.com/users/${user}/repos?sort=updated`;
     let profile = {};
     let repos = [];
     try {
-      profile = await fetch(profileUrl).then((r) => r.json());
-      repos = await fetch(reposUrl).then((r) => r.json());
+      profile = await fetchWithCache(profileUrl);
+      repos = await fetchWithCache(reposUrl);
     } catch (e) {
       alert("Failed to fetch GitHub data.");
       return;
@@ -100,14 +132,13 @@ document
     doc.text("Name", 16, y);
     doc.text("Lang", 56, y);
     doc.text("★", 76, y);
-    doc.text("Forks", 90, y);
-    doc.text("Updated", 110, y);
-    doc.text("Description", 140, y);
+    doc.text("Updated", 90, y);
+    doc.text("Description", 100, y);
     y += 6;
     // Prepare repo rows with calculated height
     repos.slice(0, 10).forEach((repo) => {
-      const descLines = doc.splitTextToSize(repo.description || "-", 48);
-      const rowHeight = Math.max(8, descLines.length * 5);
+      const descLines = doc.splitTextToSize(repo.description || "-", 92);
+      const rowHeight = Math.max(8, descLines.length * 4);
       repoRows.push({ repo, descLines, rowHeight });
     });
 
@@ -154,12 +185,11 @@ document
       doc.setFont(undefined, "normal");
       doc.text(repo.language || "-", 56, y, { maxWidth: 16 });
       doc.text(String(repo.stargazers_count), 76, y, { maxWidth: 10 });
-      doc.text(String(repo.forks_count), 90, y, { maxWidth: 12 });
-      doc.text(new Date(repo.updated_at).toLocaleDateString(), 110, y, {
+      doc.text(new Date(repo.updated_at).toLocaleDateString(), 90, y, {
         maxWidth: 26,
       });
       descLines.forEach((line, j) => {
-        doc.text(line, 140, y + j * 5, { maxWidth: 48 });
+        doc.text(line, 100, y + j * 4, { maxWidth: 92 });
       });
       y += rowHeight;
     }

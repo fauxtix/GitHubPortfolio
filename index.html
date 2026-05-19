@@ -25,7 +25,7 @@
 
     <meta property="og:description" content="Projects and repositories by Fausto Luís on GitHub">
 
-    <meta property="og:image" content="assets/avatar.png">
+    <meta property="og:image" content="./src/assets/images/avatar.png">
 
     <meta property="og:type" content="website">
 
@@ -38,7 +38,7 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
     <!-- Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./src/styles/style.css">
 </head>
 
 <body>
@@ -52,11 +52,11 @@
         </div>
 
         <nav class="nav" id="mainNav">
-            <a href="profile.html">👤 Profile</a>
+            <a href="./src/pages/profile.html">👤 Profile</a>
             <a href="https://github.com/fauxtix" target="_blank">🐙 My GitHub</a>
-            <a href="issues-prs.html" class="hover:underline">Issues & PRs</a>
-            <a href="download.html" class="hover:underline">📄 Download PDF</a>
-            <a href="contact.html" class="hover:underline">✉️ Contact</a>
+            <a href="./src/pages/issues-prs.html" class="hover:underline">Issues & PRs</a>
+            <a href="./src/pages/download.html" class="hover:underline">📄 Download PDF</a>
+            <a href="./src/pages/contact.html" class="hover:underline">✉️ Contact</a>
             <button id="toggleTheme">🌙 Theme</button>
             <button id="authBtn"></button>
         </nav>
@@ -86,7 +86,7 @@
 
     <!-- PROFILE (for avatar, name, bio) -->
     <section id="profile" style="display:none;">
-        <img id="avatar" src="assets/avatar.png" alt="Avatar"
+        <img id="avatar" src="./src/assets/images/avatar.png" alt="Avatar"
             style="width:100px;height:100px;border-radius:50%;margin:16px auto;display:block;" />
         <h2 id="name" style="text-align:center;"></h2>
         <p id="bio" style="text-align:center;"></p>
@@ -118,18 +118,18 @@
 
     <!-- SCRIPTS -->
 
-    <script src="config.js"></script>
+    <script src="./src/scripts/config.js"></script>
 
     <script>
         // Redirect to login if no token
         (function () {
             if (!sessionStorage.getItem('github_token')) {
-                window.location.href = 'login.html';
+                window.location.href = './src/pages/login.html';
             }
         })();
     </script>
 
-    <script src="app.js"></script>
+    <script src="./src/scripts/app.js"></script>
 
 
 

@@ -26,7 +26,10 @@ document
         }
       }
       function setCache(key, value) {
-        localStorage.setItem(key, JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }));
+        localStorage.setItem(
+          key,
+          JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }),
+        );
       }
       async function fetchWithCache(url, options = {}) {
         const cacheKey = `cache::${url}`;
@@ -42,14 +45,16 @@ document
         const url = "https://api.github.com/user";
         let data;
         try {
-          data = await fetchWithCache(url, { headers: { Authorization: `token ${token}` } });
+          data = await fetchWithCache(url, {
+            headers: { Authorization: `token ${token}` },
+          });
         } catch (err) {
           showLoginError("Invalid token.");
           return;
         }
         if (data && data.login) {
           sessionStorage.setItem("github_token", token);
-          window.location.href = "index.html";
+          window.location.href = "../../index.html";
         } else {
           showLoginError("Invalid token.");
         }
