@@ -2,14 +2,17 @@
 
 A responsive web portfolio to showcase your GitHub repositories, profile, and traffic insights. Built with **HTML**, **CSS**, and **JavaScript**.
 
----
+## 🆕 New Features
 
+- 📄 **Download Portfolio as PDF:**
+  - Generate a professional PDF summary of your GitHub profile and repositories (with avatar, bio, repo table, and page numbers). Find this option in the navbar.
+- ✉️ **Contact Form:**
+  - Static contact form page that opens your email client to send a message. Also accessible from the navbar.
 
 ## ✨ Features
 
 - ⚡ **Aggressive Caching:**  
   All GitHub API requests (repos, issues, PRs, profile, traffic, etc.) are now cached in localStorage for 6 hours, dramatically improving performance and reducing API rate limit usage.
-
 
 - 📦 **Dynamic Repository Showcase:** Fetches and displays your public GitHub repositories, including description, language, stars, forks, and last updated date.
 - 👤 **Profile Integration:** Loads your GitHub profile data (name, avatar, bio) into the site interface.
@@ -35,8 +38,15 @@ A responsive web portfolio to showcase your GitHub repositories, profile, and tr
 
 ---
 
-
 ## 📁 Main Files & Structure
+
+- `download.html` — Download your portfolio as a PDF. Uses `download.js` for PDF generation.
+- `download.js` — Handles PDF generation, formatting, and download (uses jsPDF, no backend required). Includes:
+  - Avatar, name, and bio formatting
+  - Repo table with proper page breaks, margins, and footers (date, page numbers)
+  - Modern, readable layout
+- `contact.html` — Contact form page (static, opens mail client).
+- `contact.js` — Handles contact form submission.
 
 - `index.html` — Home page with top bar, search/filter UI, and repository grid.
 - `profile.html` — Dedicated profile page with larger bio and avatar.
@@ -50,7 +60,6 @@ A responsive web portfolio to showcase your GitHub repositories, profile, and tr
 - `issues-prs.css` — Page-specific styles for the Issues & PRs dashboard.
 
 ---
-
 
 ## ⚙️ Configuration
 
