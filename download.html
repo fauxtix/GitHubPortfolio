@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download PDF | GitHub Insights</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="theme.js"></script>
+</head>
+
+<body>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
+    <a href="index.html" class="back-home-link"
+        style="position:absolute;top:18px;left:18px;text-decoration:none;color:#007bff;font-weight:500;">&larr; Back to
+        Home</a>
+    <div class="page-container">
+        <h1 class="page-title">Download Portfolio as PDF</h1>
+        <p>Click the button below to generate and download a PDF summary of your portfolio.</p>
+        <button id="downloadPdfBtn" class="primary-btn">Download PDF</button>
+        <p class="pdf-hint">The PDF will include your profile and a summary of your public repositories.</p>
+    </div>
+    <script src="config.js"></script>
+    <script src="download.js"></script>
+</body>
+
+</html>

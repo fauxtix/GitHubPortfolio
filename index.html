@@ -55,8 +55,9 @@
             <a href="profile.html">👤 Profile</a>
             <a href="https://github.com/fauxtix" target="_blank">🐙 My GitHub</a>
             <a href="issues-prs.html" class="hover:underline">Issues & PRs</a>
+            <a href="download.html" class="hover:underline">📄 Download PDF</a>
+            <a href="contact.html" class="hover:underline">✉️ Contact</a>
             <button id="toggleTheme">🌙 Theme</button>
-            <button id="logoutBtn" style="display:none;">🔓 Logout</button>
             <button id="authBtn"></button>
         </nav>
         <button class="hamburger" id="hamburgerBtn" aria-label="Open navigation" aria-expanded="false">
@@ -130,19 +131,7 @@
 
     <script src="app.js"></script>
 
-    <script>
-        // Show logout button if logged in, handle logout
-        document.addEventListener('DOMContentLoaded', function () {
-            var logoutBtn = document.getElementById('logoutBtn');
-            if (sessionStorage.getItem('github_token')) {
-                logoutBtn.style.display = '';
-                logoutBtn.onclick = function () {
-                    sessionStorage.removeItem('github_token');
-                    window.location.href = 'login.html';
-                };
-            }
-        });
-    </script>
+
 
 </body>
 
