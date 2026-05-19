@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | GitHub Portfolio</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <script src="../scripts/config.js"></script>
+    <script src="../scripts/theme.js"></script>
+</head>
+
+<body>
+    <a href="../../index.html" class="back-home-link"
+        style="position:absolute;top:18px;left:18px;text-decoration:none;color:#007bff;font-weight:500;">&larr; Back to
+        Home</a>
+    <div class="page-container">
+        <div class="settings-card">
+            <h1 class="page-title" style="margin-bottom:18px;">Settings</h1>
+            <form id="settingsForm" class="contact-form">
+                <label for="githubUser">GitHub Username</label>
+                <input type="text" id="githubUser" name="githubUser" required>
+                <label for="contactEmail">Contact Email</label>
+                <input type="email" id="contactEmail" name="contactEmail" required>
+                <label for="cacheDuration">Cache Duration (hours)</label>
+                <input type="number" id="cacheDuration" name="cacheDuration" min="1" max="48" required>
+                <div class="settings-btn-row">
+                    <button type="submit" class="primary-btn">Save Settings</button>
+                    <button type="button" id="resetBtn" class="secondary-btn">Reset to Defaults</button>
+                </div>
+            </form>
+            <div id="settingsMsg" style="margin-top:18px;color:#16a34a;"></div>
+        </div>
+    </div>
+    <script src="../scripts/settings.js"></script>
+</body>
+
+</html>

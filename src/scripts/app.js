@@ -56,6 +56,13 @@ const clearSearchBtn = document.getElementById("clearSearchBtn");
 
 let repositories = [];
 
+// --- SETTINGS MERGE ---
+// Merge user settings from localStorage into CONFIG
+try {
+  const userSettings = JSON.parse(localStorage.getItem("userSettings")) || {};
+  Object.assign(CONFIG, userSettings);
+} catch {}
+
 /* THEME */
 function applyTheme(theme) {
   document.body.classList.toggle("dark", theme === "dark");
@@ -64,24 +71,23 @@ function applyTheme(theme) {
 function toggleTheme() {
   const isDark = document.body.classList.contains("dark");
   const newTheme = isDark ? "light" : "dark";
-
   applyTheme(newTheme);
   localStorage.setItem("theme", newTheme);
 }
 
 function initializeTheme() {
   const saved = localStorage.getItem("theme");
-
   if (saved) return applyTheme(saved);
-
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
   applyTheme(prefersDark ? "dark" : "light");
 }
 
 toggleThemeButton.addEventListener("click", toggleTheme);
+// Apply theme from settings if present
+initializeTheme();
 
 /* GITHUB */
-const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
+const CACHE_DURATION = window.CONFIG?.cacheDuration || 6 * 60 * 60 * 1000; // 6 hours in ms
 
 function getCache(key) {
   try {
@@ -123,7 +129,7 @@ async function loadRepositories() {
   let data = [];
   let errorMsg = null;
   try {
-    const url = `https://api.github.com/users/${CONFIG.githubUser}/repos?sort=updated`;
+    const url = `${window.CONFIG?.apiBaseUrl || "https://api.github.com"}/users/${CONFIG.githubUser}/repos?sort=updated`;
     data = await fetchWithCache(url, { headers });
   } catch (e) {
     errorMsg = "Network error while fetching repositories.";
@@ -398,11 +404,14 @@ async function init() {
 
 async function loadProfile() {
   try {
-    const url = "https://api.github.com/users/" + CONFIG.githubUser;
+    const url =
+      `${window.CONFIG?.apiBaseUrl || "https://api.github.com"}/users/` +
+      CONFIG.githubUser;
     const data = await fetchWithCache(url);
     document.getElementById("avatar").src = data.avatar_url;
     document.getElementById("name").textContent = data.name || data.login;
-    document.getElementById("bio").textContent = data.bio || "No Bio available";
+    document.getElementById("bio").textContent =
+      data.bio || window.CONFIG?.defaultBio || "No Bio available";
   } catch (e) {
     console.error("Error loading profile:", e);
   }

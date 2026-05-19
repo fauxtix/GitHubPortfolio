@@ -1,5 +1,5 @@
 const reposContainer = document.getElementById("repos-container");
-const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
+const CACHE_DURATION = window.CONFIG?.cacheDuration || 6 * 60 * 60 * 1000; // 6 hours in ms
 
 function getAuthHeaders() {
   const token = sessionStorage.getItem("github_token");
@@ -22,7 +22,10 @@ function getCache(key) {
 }
 
 function setCache(key, value) {
-  localStorage.setItem(key, JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }));
+  localStorage.setItem(
+    key,
+    JSON.stringify({ value, expires: Date.now() + CACHE_DURATION }),
+  );
 }
 
 async function fetchWithCache(url, options = {}) {
@@ -68,14 +71,14 @@ function createCard(repo, issues, prs) {
       <div class="issues-col">
         <div class="issues-prs-header">🐞 Issues <span class="issues-badge">${issues.length}</span></div>
         <ul class="issues-prs-list">
-          ${issues.length ? issues.map(issue => `<li><a href="${issue.html_url}" target="_blank">#${issue.number}: ${issue.title}</a></li>`).join("") : '<li style="opacity:0.6;">None</li>'}
+          ${issues.length ? issues.map((issue) => `<li><a href="${issue.html_url}" target="_blank">#${issue.number}: ${issue.title}</a></li>`).join("") : '<li style="opacity:0.6;">None</li>'}
         </ul>
       </div>
       <div class="issues-prs-divider"></div>
       <div class="prs-col">
         <div class="issues-prs-header">🔀 Pull Requests <span class="prs-badge">${prs.length}</span></div>
         <ul class="issues-prs-list">
-          ${prs.length ? prs.map(pr => `<li><a href="${pr.html_url}" target="_blank">#${pr.number}: ${pr.title}</a></li>`).join("") : '<li style="opacity:0.6;">None</li>'}
+          ${prs.length ? prs.map((pr) => `<li><a href="${pr.html_url}" target="_blank">#${pr.number}: ${pr.title}</a></li>`).join("") : '<li style="opacity:0.6;">None</li>'}
         </ul>
       </div>
     </div>
@@ -89,7 +92,7 @@ async function main() {
     const repos = await fetchRepos();
     // Use the new grid container
     reposContainer.innerHTML = '<div class="issues-prs-grid"></div>';
-    const grid = reposContainer.querySelector('.issues-prs-grid');
+    const grid = reposContainer.querySelector(".issues-prs-grid");
     let shown = 0;
     for (const repo of repos) {
       const [issues, prs] = await Promise.all([
@@ -103,7 +106,8 @@ async function main() {
       shown++;
     }
     if (shown === 0) {
-      grid.innerHTML = '<div style="text-align:center;opacity:0.7;">No repositories with issues or pull requests found.</div>';
+      grid.innerHTML =
+        '<div style="text-align:center;opacity:0.7;">No repositories with issues or pull requests found.</div>';
     }
   } catch (e) {
     reposContainer.innerHTML = `<p>Error: ${e.message}</p>`;

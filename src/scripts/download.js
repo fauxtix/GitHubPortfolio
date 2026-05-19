@@ -16,7 +16,7 @@
 })();
 
 // --- Caching logic (copied from app.js) ---
-const CACHE_DURATION = 6 * 60 * 60 * 1000; // 6 hours in ms
+const CACHE_DURATION = window.CONFIG?.cacheDuration || 6 * 60 * 60 * 1000; // 6 hours in ms
 function getCache(key) {
   try {
     const cached = localStorage.getItem(key);
@@ -81,7 +81,7 @@ document
     // --- PDF Layout ---
     doc.setFontSize(22);
     doc.setTextColor("#111");
-    doc.text("GitHub Portfolio", 14, y);
+    doc.text(window.CONFIG?.pdfTitle || "GitHub Portfolio", 14, y);
     // Avatar (top left) and profile info to the right
     let profileBlockTop = y + 4;
     if (profile.avatar_url) {

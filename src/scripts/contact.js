@@ -29,5 +29,5 @@ document.getElementById("contactForm").addEventListener("submit", function (e) {
       `[Your Phone]\n` +
       `[LinkedIn Link]`,
   );
-  window.location.href = `mailto:fauxtix.luix@hotmail.com?subject=${subject}&body=${body}`;
+  window.location.href = `mailto:${window.CONFIG?.contactEmail || "fauxtix.luix@hotmail.com"}?subject=${subject}&body=${body}`;
 });
