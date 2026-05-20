@@ -8,7 +8,7 @@ A responsive web portfolio to showcase your GitHub repositories, profile, and tr
   All GitHub API requests (repos, issues, PRs, profile, traffic, etc.) are now cached in localStorage for 6 hours, dramatically improving performance and reducing API rate limit usage.
 - 📦 **Dynamic Repository Showcase:** Fetches and displays your public GitHub repositories, including description, language, stars, forks, and last updated date.
 - 👤 **Profile Integration:** Loads your GitHub profile data (name, avatar, bio) into the site interface.
-- 🔍 **Repository Search & Filter:** Instantly search and filter repositories by name or description. Filter by language as available.
+- 🔍 **Repository Search & Filter:** Instantly search and filter repositories by name or description. Dynamically filter by language (dropdown auto-populated from your repositories, using cached API data).
 - 🌓 **Dark/Light Theme Toggle:** Switch between light and dark modes, with user preference saved locally.
 - 📄 **Project Modal with README:** Click a project’s “Readme” button to open its README file in a modal for a quick view.
 - 📱 **Mobile Friendly:** Fully responsive layout and navigation.

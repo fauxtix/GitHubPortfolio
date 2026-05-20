@@ -66,6 +66,14 @@ try {
 /* THEME */
 function applyTheme(theme) {
   document.body.classList.toggle("dark", theme === "dark");
+  // Also update the language filter dropdown to trigger theme CSS
+  const languageFilter = document.getElementById("languageFilter");
+  if (languageFilter) {
+    // Force reflow to apply theme styles
+    languageFilter.classList.remove("force-theme-repaint");
+    void languageFilter.offsetWidth;
+    languageFilter.classList.add("force-theme-repaint");
+  }
 }
 
 function toggleTheme() {
@@ -140,8 +148,27 @@ async function loadRepositories() {
     repoGrid.innerHTML = `<div class='repo-card' style='color:#c00;text-align:center;'>${errorMsg}</div>`;
     return;
   }
-  renderRepositories(repositories);
   populateLanguages(repositories);
+  renderRepositories(repositories);
+}
+// Populate language filter dropdown
+function populateLanguages(repos) {
+  const languageFilter = document.getElementById("languageFilter");
+  if (!languageFilter) return;
+  const languages = new Set();
+  repos.forEach((repo) => {
+    if (repo.language) languages.add(repo.language);
+  });
+  // Clear and add default option
+  languageFilter.innerHTML = '<option value="all">All Languages</option>';
+  Array.from(languages)
+    .sort()
+    .forEach((lang) => {
+      const opt = document.createElement("option");
+      opt.value = lang;
+      opt.textContent = lang;
+      languageFilter.appendChild(opt);
+    });
 }
 
 /* RENDER */
@@ -366,24 +393,30 @@ function bindReadMoreButtons() {
 
 /* FILTER */
 
-searchInput.addEventListener("input", () => {
+function filterAndRenderRepos() {
   const q = searchInput.value.toLowerCase();
+  const selectedLang = languageFilter.value;
   renderRepositories(
-    repositories.filter(
-      (r) =>
+    repositories.filter((r) => {
+      const matchesSearch =
         r.name.toLowerCase().includes(q) ||
-        (r.description || "").toLowerCase().includes(q),
-    ),
+        (r.description || "").toLowerCase().includes(q);
+      const matchesLang = selectedLang === "all" || r.language === selectedLang;
+      return matchesSearch && matchesLang;
+    }),
   );
   clearSearchBtn.style.display = q ? "flex" : "none";
-});
+}
+
+searchInput.addEventListener("input", filterAndRenderRepos);
+languageFilter.addEventListener("change", filterAndRenderRepos);
 
 // Show/hide clear button on load
 clearSearchBtn.style.display = searchInput.value ? "flex" : "none";
 
 clearSearchBtn.addEventListener("click", () => {
   searchInput.value = "";
-  renderRepositories(repositories);
+  filterAndRenderRepos();
   clearSearchBtn.style.display = "none";
   searchInput.focus();
 });
