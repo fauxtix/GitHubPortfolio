@@ -4,11 +4,6 @@ A responsive web portfolio to showcase your GitHub repositories, profile, and tr
 
 ## 🆕 New Features
 
-- 📄 **Download Portfolio as PDF:**
-  - Generate a professional PDF summary of your GitHub profile and repositories (with avatar, bio, repo table, and page numbers). Find this option in the navbar.
-- ✉️ **Contact Form:**
-  - Static contact form page that opens your email client to send a message. Also accessible from the navbar.
-
 ## ✨ Features
 
 - ⚡ **Aggressive Caching:**  
@@ -22,10 +17,13 @@ A responsive web portfolio to showcase your GitHub repositories, profile, and tr
 - 🌐 **Multi-language Ready:** Interface supports internationalization (currently in Portuguese).
 - 📊 **Traffic Insights:** View detailed traffic analytics (views & clones) for each repository in a modern dialog, including summary and tables. Requires login with a GitHub Personal Access Token (PAT).
 - 🗂️ **Issues & PRs Dashboard:** Dedicated page with modern, responsive cards showing only repositories where you have open issues or pull requests. Cards feature gradient headers, theme-aware styles, and a professional layout.
-- 📄 **Download Portfolio as PDF:**
+- ✉️ **Contact Form:**
+  - Static contact form page that opens your email client to send a message. Also accessible from the navbar.
+  - 📄 **Download Portfolio as PDF:**
   - Generate a professional PDF summary of your GitHub profile and repositories (with avatar, bio, repo table, and page numbers). Find this option in the navbar.
 - ✉️ **Contact Form:**
   - Static contact form page that opens your email client to send a message. Also accessible from the navbar.
+
 - 🎨 **Modern UI/UX:** Updated card layouts, navigation, and page titles for a consistent, modern look. Theme-aware anchor colors and gradient headers enhance visual appeal.
 - 🧭 **Consistent Navigation:** Navigation bars are unified across all pages for a seamless experience.
 - 🛡️ **Authentication:** Login and user validation now use the same caching logic for efficiency.
