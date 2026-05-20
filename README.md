@@ -2,18 +2,15 @@
 
 A responsive web portfolio to showcase your GitHub repositories, profile, and traffic insights. Built with **HTML**, **CSS**, and **JavaScript**.
 
-## 🆕 New Features
-
-- 📄 **Download Portfolio as PDF:**
-  - Generate a professional PDF summary of your GitHub profile and repositories (with avatar, bio, repo table, and page numbers). Find this option in the navbar.
-- ✉️ **Contact Form:**
-  - Static contact form page that opens your email client to send a message. Also accessible from the navbar.
-
 ## ✨ Features
 
 - ⚡ **Aggressive Caching:**  
   All GitHub API requests (repos, issues, PRs, profile, traffic, etc.) are now cached in localStorage for 6 hours, dramatically improving performance and reducing API rate limit usage.
 
+- 📄 **Download Portfolio as PDF:**
+  - Generate a professional PDF summary of your GitHub profile and repositories (with avatar, bio, repo table, and page numbers). Find this option in the navbar.
+- ✉️ **Contact Form:**
+  - Static contact form page that opens your email client to send a message. Also accessible from the navbar.
 - 📦 **Dynamic Repository Showcase:** Fetches and displays your public GitHub repositories, including description, language, stars, forks, and last updated date.
 - 👤 **Profile Integration:** Loads your GitHub profile data (name, avatar, bio) into the site interface.
 - 🔍 **Repository Search & Filter:** Instantly search and filter repositories by name or description. Filter by language as available.
