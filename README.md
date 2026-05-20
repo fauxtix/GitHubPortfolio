@@ -2,8 +2,6 @@
 
 A responsive web portfolio to showcase your GitHub repositories, profile, and traffic insights. Built with **HTML**, **CSS**, and **JavaScript**.
 
-## 🆕 New Features
-
 ## ✨ Features
 
 - ⚡ **Aggressive Caching:**  
