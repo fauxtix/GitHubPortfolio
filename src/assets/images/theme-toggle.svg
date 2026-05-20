@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="24" height="24">
+  <defs>
+    <radialGradient id="sunGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fde68a"/>
+      <stop offset="100%" stop-color="#f59e42"/>
+    </radialGradient>
+    <radialGradient id="moonGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#6366f1"/>
+    </radialGradient>
+  </defs>
+  <!-- Sun (left) -->
+  <circle cx="11" cy="16" r="6" fill="url(#sunGradient)"/>
+  <g stroke="#f59e42" stroke-width="1.5">
+    <line x1="11" y1="6" x2="11" y2="2"/>
+    <line x1="11" y1="26" x2="11" y2="30"/>
+    <line x1="5.76" y1="10.24" x2="2.93" y2="7.41"/>
+    <line x1="5.76" y1="21.76" x2="2.93" y2="24.59"/>
+    <line x1="16.24" y1="10.24" x2="19.07" y2="7.41"/>
+    <line x1="16.24" y1="21.76" x2="19.07" y2="24.59"/>
+  </g>
+  <!-- Moon (right) -->
+  <path d="M21 10a6 6 0 1 0 0 12 6 6 0 0 1 0-12z" fill="url(#moonGradient)"/>
+  <circle cx="23.5" cy="16" r="2.5" fill="#fff" fill-opacity="0.7"/>
+</svg>
