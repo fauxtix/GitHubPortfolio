@@ -124,20 +124,27 @@ document
     doc.setTextColor("#111");
     doc.text("Repositories", 14, y);
     y += 7;
-    // Table header
+    // Table header (consistent positions)
+    const colX = {
+      name: 16,
+      lang: 56,
+      stars: 76,
+      updated: 96,
+      description: 112, // move left for more width
+    };
     doc.setFontSize(10);
     doc.setTextColor("#111");
     doc.setFillColor("#e5e7eb");
     doc.rect(14, y - 4, 180, 7, "F");
-    doc.text("Name", 16, y);
-    doc.text("Lang", 56, y);
-    doc.text("★", 76, y);
-    doc.text("Updated", 90, y);
-    doc.text("Description", 100, y);
+    doc.text("Name", colX.name, y);
+    doc.text("Lang", colX.lang, y);
+    doc.text("Stars", colX.stars, y); // Changed to 'Stars' for clarity
+    doc.text("Updated", colX.updated, y);
+    doc.text("Description", colX.description, y);
     y += 6;
-    // Prepare repo rows with calculated height
+    // Prepare repo rows with calculated height (description width = 82)
     repos.slice(0, 10).forEach((repo) => {
-      const descLines = doc.splitTextToSize(repo.description || "-", 92);
+      const descLines = doc.splitTextToSize(repo.description || "-", 90);
       const rowHeight = Math.max(8, descLines.length * 4);
       repoRows.push({ repo, descLines, rowHeight });
     });
@@ -165,31 +172,33 @@ document
         doc.addPage();
         pageNum++;
         y = marginTop + 6; // after table header
-        // Redraw table header
+        // Redraw table header (same positions)
         doc.setFontSize(10);
         doc.setTextColor("#111");
         doc.setFillColor("#e5e7eb");
         doc.rect(14, y - 4, 180, 7, "F");
-        doc.text("Name", 16, y);
-        doc.text("Lang", 56, y);
-        doc.text("★", 76, y);
-        doc.text("Forks", 90, y);
-        doc.text("Updated", 110, y);
-        doc.text("Description", 140, y);
+        doc.text("Name", colX.name, y);
+        doc.text("Lang", colX.lang, y);
+        doc.text("Stars", colX.stars, y); // Changed to 'Stars' for clarity
+        doc.text("Updated", colX.updated, y);
+        doc.text("Description", colX.description, y);
         y += 6;
       }
       doc.setFontSize(8);
       doc.setTextColor("#222");
       doc.setFont(undefined, "bold");
-      doc.text(repo.name, 16, y, { maxWidth: 38 });
+      doc.text(repo.name, colX.name, y, { maxWidth: 38 });
       doc.setFont(undefined, "normal");
-      doc.text(repo.language || "-", 56, y, { maxWidth: 16 });
-      doc.text(String(repo.stargazers_count), 76, y, { maxWidth: 10 });
-      doc.text(new Date(repo.updated_at).toLocaleDateString(), 90, y, {
-        maxWidth: 26,
-      });
+      doc.text(repo.language || "-", colX.lang, y, { maxWidth: 16 });
+      doc.text(String(repo.stargazers_count), colX.stars, y, { maxWidth: 10 });
+      doc.text(
+        new Date(repo.updated_at).toLocaleDateString(),
+        colX.updated,
+        y,
+        { maxWidth: 18 },
+      );
       descLines.forEach((line, j) => {
-        doc.text(line, 100, y + j * 4, { maxWidth: 92 });
+        doc.text(line, colX.description, y + j * 4, { maxWidth: 90 });
       });
       y += rowHeight;
     }
