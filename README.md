@@ -30,9 +30,6 @@ A responsive web portfolio to showcase your GitHub repositories, profile, and tr
 
 - 🔑 **Login with GitHub Token:**  
   Access traffic data by logging in with a GitHub Personal Access Token (PAT). Your token is stored only in your browser session.
-- 📊 **Traffic Dialog:**  
-  Click the “Traffic” button on any repo card to view detailed analytics (total/unique views & clones, with tables for the last 14 days).
-
 ---
 
 ## 📁 Main Files & Structure
