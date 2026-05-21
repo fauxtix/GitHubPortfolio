@@ -1,0 +1,18 @@
+/* Profile page-specific styles - most should be global already, but add here if necessary */
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    display: block;
+    margin: 24px auto;
+    object-fit: cover;
+}
+
+.profile-details {
+    text-align: center;
+}
+
+.profile-bio {
+    font-size: 1rem;
+    opacity: 0.82;
+}

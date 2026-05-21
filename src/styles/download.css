@@ -1,0 +1,19 @@
+/* Download page-specific styles */
+.pdf-hint {
+    font-size: 0.97rem;
+    color: #888;
+    margin-top: 10px;
+    text-align: center;
+}
+
+body.dark .pdf-hint {
+    color: #bbb;
+}
+
+.primary-btn {
+    margin-top: 18px;
+}
+
+.page-container {
+    /* Optional: special page layout if download.html is unique */
+}

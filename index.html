@@ -3,74 +3,54 @@
 
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Fausto Luís | Programação / Análise
-    </title>
-
+    <title>Fausto Luís | Programação / Análise</title>
     <meta name="color-scheme" content="dark light">
-
-    <!-- SEO -->
     <meta name="description"
         content="Portfolio de Fausto Luís, software engineer especializado em backend, APIs e automação.">
-
     <meta name="keywords" content="developer, portfolio, github, backend, java, python">
-
     <meta name="author" content="Fausto Luís">
-
-    <!-- Open Graph -->
     <meta property="og:title" content="Fausto Luís Portfolio">
-
     <meta property="og:description" content="Projects and repositories by Fausto Luís on GitHub">
-
     <meta property="og:image" content="./src/assets/images/avatar.png">
-
     <meta property="og:type" content="website">
-
-    <!-- Theme -->
     <meta name="theme-color" content="#09090b">
-
-    <!-- Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-    <!-- Styles -->
+    <!-- Global Styles -->
     <link rel="stylesheet" href="./src/styles/style.css">
 </head>
 
 <body>
 
     <!-- TOPBAR -->
-
-
     <header class="topbar">
-
         <div class="brand">
             <a href="index.html">🚀 My Portfolio</a>
         </div>
-
         <nav class="nav" id="mainNav">
             <div class="nav-center">
                 <a href="https://github.com/fauxtix" target="_blank"><span class="emoji">🐙</span> My GitHub</a>
-                <a href="./src/pages/issues-prs.html" class="hover:underline"><span class="emoji">🐞🔀</span> Issues &
-                    PRs</a>
-                <a href="./src/pages/download.html" class="hover:underline"><span class="emoji">📰</span> Download
-                    PDF</a>
-                <a href="./src/pages/contact.html" class="hover:underline"><img
-                        src="./src/assets/images/contact-mail.svg" alt="Contact" class="emoji"
-                        style="width:1.35em;height:1.35em;vertical-align:middle;" /> Contact</a>
+                <a href="./src/pages/issues-prs.html"><span class="emoji">🐞🔀</span> Issues & PRs</a>
+                <a href="./src/pages/download.html"><span class="emoji">📰</span> Download PDF</a>
+                <a href="./src/pages/contact.html">
+                    <img src="./src/assets/images/contact-mail.svg" alt="Contact" class="emoji"
+                        style="width:1.35em;height:1.35em;vertical-align:middle;" /> Contact
+                </a>
             </div>
             <div class="nav-utility">
-                <a href="./src/pages/profile.html"><img src="./src/assets/images/profile-avatar.svg" alt="Profile"
-                        class="emoji" style="width:1.35em;height:1.35em;vertical-align:middle;" /></a>
-                <a href="./src/pages/settings.html" class="hover:underline"><img
-                        src="./src/assets/images/settings-classic.svg" alt="Settings" class="emoji"
-                        style="width:1.35em;height:1.35em;vertical-align:middle;" /></a>
-                <button id="toggleTheme"><img src="./src/assets/images/theme-moon-yellow.svg" alt="Theme Moon"
-                        class="emoji" style="width:1.35em;height:1.35em;vertical-align:middle;" /></button>
+                <a href="./src/pages/profile.html">
+                    <img src="./src/assets/images/profile-avatar.svg" alt="Profile" class="emoji"
+                        style="width:1.35em;height:1.35em;vertical-align:middle;" />
+                </a>
+                <a href="./src/pages/settings.html">
+                    <img src="./src/assets/images/settings-classic.svg" alt="Settings" class="emoji"
+                        style="width:1.35em;height:1.35em;vertical-align:middle;" />
+                </a>
+                <button id="toggleTheme">
+                    <img src="./src/assets/images/theme-moon-yellow.svg" alt="Theme" class="emoji"
+                        style="width:1.35em;height:1.35em;vertical-align:middle;" />
+                </button>
                 <button id="authBtn"></button>
             </div>
         </nav>
@@ -81,18 +61,13 @@
         </button>
     </header>
 
-
     <!-- SEARCH -->
-
-
-    <section class="search-section"
-        style="position:relative;display:flex;justify-content:center;align-items:center;gap:12px;">
-        <input type="text" id="searchInput" placeholder="Search projects..." style="padding-right:40px;">
-        <button id="clearSearchBtn" title="Clear search" aria-label="Clear search"
-            style="position:absolute;right:calc(50% - 30vh + 24px);top:50%;transform:translateY(-50%);padding:0 8px;font-size:1.2em;line-height:1.2;cursor:pointer;background:none;border:none;outline:none;display:none;z-index:2;">
+    <section class="search-section">
+        <input type="text" id="searchInput" placeholder="Search projects...">
+        <button id="clearSearchBtn" title="Clear search" aria-label="Clear search">
             <span aria-hidden="true">✖</span>
         </button>
-        <select id="languageFilter" style="margin-left:16px;min-width:120px;">
+        <select id="languageFilter">
             <option value="all">All Languages</option>
         </select>
     </section>
@@ -106,33 +81,20 @@
     </section>
 
     <!-- REPOSITORIES -->
-
     <section id="repos">
-
         <div id="repoGrid" class="repo-grid"></div>
-
     </section>
 
     <!-- MODAL -->
-
     <div id="modal" class="modal hidden">
-
         <div class="modal-content">
-
-            <button id="closeModal">
-                ✕
-            </button>
-
+            <button id="closeModal">✕</button>
             <div id="modalBody" class="modal-body"></div>
-
         </div>
-
     </div>
 
     <!-- SCRIPTS -->
-
     <script src="./src/scripts/config.js"></script>
-
     <script>
         // Redirect to login if no token
         (function () {
@@ -141,11 +103,7 @@
             }
         })();
     </script>
-
     <script src="./src/scripts/app.js"></script>
-
-
-
 </body>
 
 </html>
