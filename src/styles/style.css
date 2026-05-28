@@ -1,3 +1,17 @@
+/* Navbar layout helpers */
+.nav-center {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.nav-utility {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-left: 18px;
+}
+
 :root {
     --bg: #fff;
     --text: #18181b;
@@ -218,6 +232,70 @@ body {
     backdrop-filter: blur(8px);
     position: relative;
     overflow: hidden;
+}
+
+.repo-icon {
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.repo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.repo-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0;
+    margin-right: 8px;
+    flex: 1;
+    text-align: left;
+}
+
+.repo-language {
+    font-size: 0.95rem;
+    opacity: 0.8;
+    padding: 4px 10px;
+    border-radius: 8px;
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--accent-dark);
+    margin-left: 8px;
+    white-space: nowrap;
+}
+
+.repo-description {
+    font-size: 0.97rem;
+    font-weight: 400;
+    opacity: 0.85;
+    margin-bottom: 12px;
+    margin-top: 8px;
+    text-align: left;
+}
+
+.repo-meta {
+    display: flex;
+    gap: 18px;
+    font-size: 0.93rem;
+    opacity: 0.8;
+    margin: 10px 0 12px 0;
+}
+
+.repo-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: auto;
+}
+
+.repo-card hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 10px 0 10px 0;
 }
 
 .repo-card:hover {
