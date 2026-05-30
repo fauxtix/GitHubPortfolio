@@ -24,3 +24,43 @@
     margin-top: 16px;
     margin-bottom: 10px;
 }
+
+.socials-group {
+    margin: 24px 0 12px 0;
+    border: 1px solid #ececec;
+    border-radius: 0.7em;
+    padding: 1em 1em 0.6em 1em;
+    background: var(--group-bg, #fafbfc);
+}
+
+.socials-group legend {
+    padding: 0 8px;
+    font-weight: 600;
+    font-size: 1.03em;
+    color: var(--group-legend, #333);
+}
+
+.socials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(198px, 1fr));
+    gap: 16px 21px;
+    align-items: end;
+    margin-top: 0.2em;
+}
+
+.socials-grid label {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.socials-grid input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 550px) {
+    .socials-grid {
+        grid-template-columns: 1fr;
+        gap: 12px 0;
+    }
+}
