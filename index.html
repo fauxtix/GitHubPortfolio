@@ -35,8 +35,6 @@
                     <a href="https://github.com/fauxtix" target="_blank"><span class="emoji">🐙</span> My GitHub</a>
                     <a href="./src/pages/issues-prs.html" class="hover:underline"><span class="emoji">🐞🔀</span> Issues
                         & PRs</a>
-                    <a href="./src/pages/download.html" class="hover:underline"><span class="emoji">📰</span> Download
-                        PDF</a>
                     <a href="./src/pages/contact.html" class="hover:underline"><img
                             src="./src/assets/images/contact-mail.svg" alt="Contact" class="emoji"
                             style="width:1.35em;height:1.35em;vertical-align:middle;" /> Contact</a>
@@ -45,6 +43,14 @@
                     <a href="./src/pages/profile.html">
                         <img src="./src/assets/images/profile-avatar.svg" alt="Profile" class="emoji"
                             style="width:1.35em;height:1.35em;vertical-align:middle;" />
+                    </a>
+                    <a href="./src/pages/download.html" class="inline-flex items-center gap-2 px-3 py-2 rounded-lg
+          bg-gray-900 text-white hover:bg-gray-800 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2
+             2 0 002-2v-2" />
+                        </svg>
                     </a>
                     <a href="./src/pages/settings.html">
                         <img src="./src/assets/images/settings-classic.svg" alt="Settings" class="emoji"
@@ -65,15 +71,31 @@
         </button>
     </header>
 
-    <!-- SEARCH -->
-    <section class="search-section">
-        <input type="text" id="searchInput" placeholder="Search projects..." aria-label="Search projects" />
-        <button id="clearSearchBtn" title="Clear search" aria-label="Clear search">
-            <span aria-hidden="true">✖</span>
-        </button>
-        <select id="languageFilter" aria-label="Filter by programming language">
-            <option value="all">All Languages</option>
-        </select>
+    <section class="search-options">
+        <!-- Left: GitHub user input and button -->
+        <div class="search-user">
+            <input id="githubUserInput" type="text" aria-label="GitHub User" placeholder="GitHub User"
+                style="padding:0.25rem 0.75rem;border-radius:0.375rem;border:1px solid #444;background:var(--tw-bg-opacity, #18181b);color:inherit;min-width:180px;max-width:260px;outline:none;" />
+            <button id="loadUserBtn"
+                style="padding:0.25rem 0.75rem;border-radius:0.375rem;background:#facc15;color:#18181b;font-weight:500;border:none;cursor:pointer;">Load
+                Repos</button>
+        </div>
+        <!-- Center: Search bar, clear, filter -->
+        <div class="search-center">
+            <input type="text" id="searchInput" placeholder="Search projects..." aria-label="Search projects"
+                style="min-width:200px;max-width:340px;width:100%;" />
+            <button id="clearSearchBtn" title="Clear search" aria-label="Clear search">
+                <span aria-hidden="true">✖</span>
+            </button>
+            <div style="width:220px;">
+                <select id="languageFilter" aria-label="Filter by programming language">
+                    <option value="all">All Languages</option>
+                </select>
+
+            </div>
+        </div>
+        <!-- Right: empty spacer for true centering -->
+        <div class="search-spacer"></div>
     </section>
 
     <!-- PROFILE (for avatar, name, bio) -->

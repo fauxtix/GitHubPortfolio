@@ -451,4 +451,48 @@ async function loadProfile() {
   }
 }
 
+// --- GITHUB USER INPUT (top left) ---
+const githubUserInput = document.getElementById("githubUserInput");
+const loadUserBtn = document.getElementById("loadUserBtn");
+
+if (githubUserInput && loadUserBtn) {
+  // Set initial value from CONFIG
+  githubUserInput.value = window.CONFIG.githubUser || "";
+  // Theme support: update input/button on theme change
+  function updateInputTheme() {
+    const isDark = document.body.classList.contains("dark");
+    githubUserInput.style.background = isDark ? "#18181b" : "#fffbe8";
+    githubUserInput.style.color = isDark ? "#fafafa" : "#18181b";
+    githubUserInput.style.borderColor = isDark ? "#444" : "#facc15";
+    loadUserBtn.style.background = isDark ? "#facc15" : "#fde047";
+    loadUserBtn.style.color = isDark ? "#18181b" : "#18181b";
+  }
+  updateInputTheme();
+  // Update on theme toggle
+  const observer = new MutationObserver(updateInputTheme);
+  observer.observe(document.body, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+
+  loadUserBtn.addEventListener("click", async () => {
+    const newUser = githubUserInput.value.trim();
+    if (!newUser || newUser === window.CONFIG.githubUser) return;
+    window.CONFIG.githubUser = newUser;
+    // Optionally persist user setting
+    try {
+      const userSettings =
+        JSON.parse(localStorage.getItem("userSettings")) || {};
+      userSettings.githubUser = newUser;
+      localStorage.setItem("userSettings", JSON.stringify(userSettings));
+    } catch {}
+    // Reload profile and repos
+    await loadProfile();
+    await loadRepositories();
+  });
+  githubUserInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") loadUserBtn.click();
+  });
+}
+
 init();
