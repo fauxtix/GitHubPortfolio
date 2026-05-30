@@ -1,66 +1,68 @@
-/* Settings page-specific styles */
-.settings-container {
-    max-width: 500px;
-    margin: 48px auto;
-    padding: 32px 28px;
-    background: var(--card-bg, #fff);
-    border-radius: 16px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
-}
-
-.settings-option {
-    margin-bottom: 18px;
-}
-
-.settings-label {
-    font-weight: 500;
-    margin-bottom: 6px;
-    display: block;
-}
-
-.settings-section-title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin-top: 16px;
-    margin-bottom: 10px;
-}
-
 .socials-group {
-    margin: 24px 0 12px 0;
+    margin: 18px 0 12px 0;
     border: 1px solid #ececec;
-    border-radius: 0.7em;
-    padding: 1em 1em 0.6em 1em;
-    background: var(--group-bg, #fafbfc);
+    border-radius: 10px;
+    padding: 1.1em 1.2em 0.7em 1.2em;
+    background: var(--group-bg, #fff);
 }
 
 .socials-group legend {
     padding: 0 8px;
     font-weight: 600;
-    font-size: 1.03em;
+    font-size: 1.12em;
     color: var(--group-legend, #333);
+    letter-spacing: 0.01em;
+    margin-left: 0;
 }
 
 .socials-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(198px, 1fr));
-    gap: 16px 21px;
-    align-items: end;
-    margin-top: 0.2em;
+    grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+    gap: 10px 18px;
+    margin-top: 0.22em;
+    margin-bottom: 0;
+}
+
+.socials-grid>div {
+    margin: 0;
+    padding: 0;
 }
 
 .socials-grid label {
+    font-weight: 500;
+    margin-bottom: 2px;
     display: block;
-    margin-bottom: 4px;
+    font-size: 0.99em;
+    color: #222;
 }
 
 .socials-grid input {
     width: 100%;
     box-sizing: border-box;
+    padding: 7px 7px;
+    font-size: 0.98em;
+    background: #f9fafb;
+    color: #18181b;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    margin: 0;
 }
 
-@media (max-width: 550px) {
+.socials-grid input:focus {
+    border-color: var(--accent, #6366f1);
+    outline: none;
+}
+
+@media (max-width: 700px) {
+    .socials-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px 10px;
+    }
+}
+
+@media (max-width: 420px) {
     .socials-grid {
         grid-template-columns: 1fr;
-        gap: 12px 0;
+        gap: 10px 0;
     }
 }
