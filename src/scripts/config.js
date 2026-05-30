@@ -9,4 +9,11 @@ window.CONFIG = {
   pdfTitle: "GitHub Portfolio",
   defaultBio: "No Bio available",
   cacheDuration: 6 * 60 * 60 * 1000, // 6 hours
+  social: {
+    linkedin: "https://linkedin.com/in/your-profile",
+    twitter: "https://twitter.com/your-handle",
+    website: "https://yourwebsite.com",
+    blog: "",
+    instagram: "",
+  },
 };
