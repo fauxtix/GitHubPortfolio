@@ -41,17 +41,34 @@
 
             <hr style="margin:24px 0 18px 0;opacity:.3">
 
-            <label for="linkedin">LinkedIn</label>
-            <input id="linkedin" name="social_linkedin" ...>
-            <label for="twitter">Twitter</label>
-            <input id="twitter" name="social_twitter" ...>
-            <label for="website">Website</label>
-            <input id="website" name="social_website" ...>
-            <label for="blog">Blog</label>
-            <input id="blog" name="social_blog" ...>
-            <label for="instagram">Instagram</label>
-            <input id="instagram" name="social_instagram" ...>
-
+            <fieldset class="socials-group">
+                <legend>Social links</legend>
+                <div class="socials-grid">
+                    <div>
+                        <label for="linkedin">LinkedIn</label>
+                        <input id="linkedin" name="social_linkedin" type="url"
+                            placeholder="https://linkedin.com/in/your-profile">
+                    </div>
+                    <div>
+                        <label for="twitter">Twitter</label>
+                        <input id="twitter" name="social_twitter" type="url"
+                            placeholder="https://twitter.com/your-handle">
+                    </div>
+                    <div>
+                        <label for="website">Website</label>
+                        <input id="website" name="social_website" type="url" placeholder="https://yourwebsite.com">
+                    </div>
+                    <div>
+                        <label for="blog">Blog</label>
+                        <input id="blog" name="social_blog" type="url" placeholder="https://yourblog.com">
+                    </div>
+                    <div>
+                        <label for="instagram">Instagram</label>
+                        <input id="instagram" name="social_instagram" type="url"
+                            placeholder="https://instagram.com/your-handle">
+                    </div>
+                </div>
+            </fieldset>
             <button type="submit" class="primary-btn">Save Settings</button>
         </form>
         <button type="button" id="resetBtn" class="secondary-btn" style="margin-top:12px;">Reset to Defaults</button>
