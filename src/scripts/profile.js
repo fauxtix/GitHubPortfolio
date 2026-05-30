@@ -35,9 +35,9 @@ function renderSocialLinks() {
       a.href = url;
       a.target = "_blank";
       a.rel = "noopener noreferrer";
-      a.title = label;
-      a.style = "margin-right:12px; font-size:1.8rem;";
-      a.innerText = icon;
+      a.className = "profile-social-link";
+      // a.innerText = icon; // Replace this with:
+      a.innerHTML = `<span style="font-size:1.3em">${icon}</span><span>${label}</span>`;
       container.appendChild(a);
     }
   });

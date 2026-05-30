@@ -10,10 +10,10 @@ window.CONFIG = {
   defaultBio: "No Bio available",
   cacheDuration: 6 * 60 * 60 * 1000, // 6 hours
   social: {
-    linkedin: "https://linkedin.com/in/your-profile",
-    twitter: "https://twitter.com/your-handle",
-    website: "https://yourwebsite.com",
-    blog: "",
-    instagram: "",
+    linkedin: "https://linkedin.com/in/your-linkedin-handle",
+    twitter: "https://twitter.com/your-twitter-handle",
+    website: "https://your.website",
+    blog: "https://your.website/blog",
+    instagram: "https://instagram.com/your-instagram-handle",
   },
 };

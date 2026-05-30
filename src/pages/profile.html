@@ -4,46 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Profile | Fausto Luís</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/repo-actions.css">
-    <link class="nav" rel="stylesheet" href="../styles/profile.css">
+    <link rel="stylesheet" href="../styles/profile.css">
+    <script src="../scripts/theme.js"></script>
 </head>
 
 <body>
+    <script>
+        // Applies the saved theme immediately on page load
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
 
     <!-- TOPBAR -->
     <header class="topbar">
-
         <div class="brand">
             <a href="/" aria-label="Home">🚀 My Portfolio</a>
         </div>
-
         <nav class="nav">
             <!-- Home link removed as requested -->
         </nav>
-
     </header>
 
     <!-- PROFILE HERO -->
     <header class="hero">
-
         <div class="container">
-
-            <img class="avatar" src="../assets/images/MyPhoto.jpg" alt="Fausto Luís avatar">
-
+            <img class="avatar" src="../assets/images/MyPhoto.jpg" alt="Fausto Luís avatar" style="width:72px;height:72px;border-radius:50%;object-fit:cover;display:block;margin:0 auto 12px auto;" />
             <h1 id="name"></h1>
-
             <p id="bio"></p>
 
-            <div style="margin-top: 16px;">
-                <span style="font-weight:500; margin-right: 10px;">Find me:</span>
-                <span id="social-links" class="profile-social-links" style="min-height: 28px;"></span>
+            <div style="margin-top: 24px;">
+                <div style="font-weight:500; font-size:1.1em; margin-bottom:8px;">Find me:</div>
+                <div id="social-links" class="profile-social-links"></div>
             </div>
         </div>
-
     </header>
+
     <script src="../scripts/config.js"></script>
     <script src="../scripts/profile.js"></script>
 </body>
