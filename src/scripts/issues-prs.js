@@ -90,7 +90,7 @@ async function main() {
   reposContainer.innerHTML = "<p>Loading...</p>";
   try {
     const repos = await fetchRepos();
-    // Use the new grid container
+    // Use the grid container for all repos
     reposContainer.innerHTML = '<div class="issues-prs-grid"></div>';
     const grid = reposContainer.querySelector(".issues-prs-grid");
     let shown = 0;

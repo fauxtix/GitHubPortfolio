@@ -4,42 +4,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings | GitHub Portfolio</title>
+    <title>Settings | GitHub Insights</title>
     <link rel="stylesheet" href="../styles/style.css">
     <link rel="stylesheet" href="../styles/repo-actions.css">
-    <link rel="stylesheet" href="../styles/settings.css">
-    <script src="../scripts/config.js"></script>
     <script src="../scripts/theme.js"></script>
 </head>
 
 <body>
+    <script>
+        (function () {
+            const savedTheme = localStorage.getItem("theme");
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+        })();
+    </script>
     <!-- TOPBAR -->
     <header class="topbar">
         <div class="brand">
-            <a href="../../index.html" aria-label="Home" class="nav-btn">🚀 Portfolio</a>
+            <a href="/" aria-label="Home">🚀 My Portfolio</a>
         </div>
         <nav class="nav">
-            <!-- Home link intentionally omitted for consistency -->
         </nav>
     </header>
     <div class="page-container">
-        <div class="settings-card">
-            <h1 class="page-title" style="margin-bottom:18px;">Settings</h1>
-            <form id="settingsForm" class="contact-form">
-                <label for="githubUser">GitHub Username</label>
-                <input type="text" id="githubUser" name="githubUser" required>
-                <label for="contactEmail">Contact Email</label>
-                <input type="email" id="contactEmail" name="contactEmail" required>
-                <label for="cacheDuration">Cache Duration (hours)</label>
-                <input type="number" id="cacheDuration" name="cacheDuration" min="1" max="48" required>
-                <div class="settings-btn-row">
-                    <button type="submit" class="primary-btn">Save Settings</button>
-                    <button type="button" id="resetBtn" class="secondary-btn">Reset to Defaults</button>
-                </div>
-            </form>
-            <div id="settingsMsg" style="margin-top:18px;color:#16a34a;"></div>
-        </div>
+        <h1 class="page-title">Settings</h1>
+        <form id="settingsForm" class="contact-form">
+            <label for="githubUser">GitHub Username</label>
+            <input type="text" id="githubUser" name="githubUser" required>
+
+            <label for="contactEmail">Contact Email</label>
+            <input type="email" id="contactEmail" name="contactEmail" required>
+
+            <label for="cacheDuration">Cache Duration (hours)</label>
+            <input type="number" id="cacheDuration" name="cacheDuration" min="1" max="48" required>
+
+            <button type="submit" class="primary-btn">Save Settings</button>
+        </form>
+        <button type="button" id="resetBtn" class="secondary-btn">Reset to Defaults</button>
+        <div id="settingsMsg" style="margin-top:18px;color:#16a34a;"></div>
+        <p class="contact-hint">Update your GitHub username, contact email, or cache duration. Reset to defaults if
+            needed.</p>
     </div>
+    <script src="../scripts/config.js"></script>
     <script src="../scripts/settings.js"></script>
 </body>
 

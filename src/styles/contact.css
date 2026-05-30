@@ -8,6 +8,16 @@
     margin-bottom: 10px;
 }
 
+.contact-form .primary-btn,
+.contact-form .secondary-btn {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.contact-form .secondary-btn {
+    margin-top: 0;
+}
+
 .contact-form label {
     font-weight: 500;
     margin-bottom: 2px;

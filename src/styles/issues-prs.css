@@ -1,3 +1,143 @@
+/* Two-column card layout for Issues & PRs */
+.issues-prs-cards {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: stretch;
+  margin: 32px 0 0 0;
+  flex-wrap: wrap;
+}
+
+
+/* The grid for all repos */
+/* The grid for all repos */
+/* Modern responsive grid for all repos */
+.issues-prs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 32px;
+  padding: 40px 0;
+  margin: 0;
+}
+}
+}
+
+/* Each repo as a card */
+
+
+/* Each repo as a card */
+.issues-prs-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+  border: 1.5px solid #e0e7ef;
+  padding: 32px 28px 24px 28px;
+  max-width: 520px;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: box-shadow 0.2s, transform 0.2s, border 0.2s;
+  position: relative;
+}
+
+body.dark .issues-prs-card {
+  background: #18181b;
+}
+
+.issues-prs-card:hover {
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.18), 0 2px 8px rgba(0, 0, 0, 0.10);
+  transform: translateY(-4px) scale(1.01);
+  border-color: #6366f1;
+}
+
+@media (max-width: 900px) {
+  .issues-prs-grid {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .issues-prs-repo-columns {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+  }
+}
+
+@media (max-width: 900px) {
+  .issues-prs-grid {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+
+  .repo-card-columns {
+    flex-direction: column;
+    gap: 18px;
+    align-items: stretch;
+  }
+}
+
+.issues-card, .prs-card {
+  flex: 1 1 340px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10), 0 1.5px 4px rgba(0, 0, 0, 0.08);
+  padding: 28px 24px 24px 24px;
+  min-width: 280px;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+body.dark .issues-card, body.dark .prs-card {
+  background: var(--card-bg, #23232a);
+  color: var(--text, #fff);
+}
+
+@media (max-width: 900px) {
+  .issues-prs-cards {
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+  }
+}
+
+/* Main container for Issues & PRs page */
+body {
+  background: var(--bg, #fff);
+  color: var(--text, #18181b);
+}
+
+#repos-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 40px 16px;
+}
+
+main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Page Title for Issues & PRs */
+.issues-prs-page-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 32px 0 18px 0;
+  text-align: center;
+  letter-spacing: -1px;
+  color: var(--accent, #6366f1);
+}
+
+body.dark .issues-prs-page-title {
+  color: var(--accent, #60a5fa);
+}
+
 /* Issues & PRs Analytics/Stats page-specific styles */
 .traffic-summary,
 .traffic-group,
@@ -130,4 +270,20 @@ body.dark .traffic-table td {
 .traffic-group-title.clones::before {
   content: "🔄 ";
   margin-right: 2px;
+}
+
+/* Responsive two-column for issues/prs inside card */
+.issues-prs-flex {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  align-items: stretch;
+  min-height: 120px;
+}
+
+@media (max-width: 900px) {
+  .issues-prs-flex {
+    flex-direction: column;
+    gap: 0;
+  }
 }
