@@ -243,29 +243,20 @@ function renderRepositories(repos) {
         <button
           class="read-more"
           data-owner="${repo.owner.login}"
-          data-repo="${repo.name}"
-        >
-          📄 Readme
-        </button>
+          data-repo="${repo.name}">📄 Readme</button>
         ${
           token
             ? `<button
           class="traffic-btn"
           data-owner="${repo.owner.login}"
-          data-repo="${repo.name}"
-        >
-          📊 Traffic
-        </button>`
+          data-repo="${repo.name}">📊 Traffic</button>`
             : ""
         }
         <a
           href="${repo.html_url}"
           target="_blank"
           rel="noopener noreferrer"
-          class="repo-link"
-        >
-          🐙 View repo
-        </a>
+          class="repo-link">🐙 View repo</a>
       </div>
     `;
     repoGrid.appendChild(card);

@@ -1,39 +1,51 @@
-/* Two-column card layout for Issues & PRs */
-.issues-prs-cards {
+#repos-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 16px 60px 16px;
+}
+
+main {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
   display: flex;
-  gap: 32px;
-  justify-content: center;
-  align-items: stretch;
-  margin: 32px 0 0 0;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
 }
 
 
-/* The grid for all repos */
-/* The grid for all repos */
-/* Modern responsive grid for all repos */
 .issues-prs-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 32px;
-  padding: 40px 0;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 44px;
+  padding: 44px 0;
+  width: 100%;
   margin: 0;
 }
+
+@media (max-width: 1100px) {
+  .issues-prs-grid {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 32px;
+  }
 }
+
+@media (max-width: 700px) {
+  .issues-prs-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 20px 0;
+  }
 }
 
-/* Each repo as a card */
 
-
-/* Each repo as a card */
 .issues-prs-card {
   background: #fff;
   border-radius: 18px;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10), 0 1.5px 4px rgba(0, 0, 0, 0.08);
   border: 1.5px solid #e0e7ef;
   padding: 32px 28px 24px 28px;
-  max-width: 520px;
-  min-width: 320px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -45,245 +57,160 @@ body.dark .issues-prs-card {
   background: #18181b;
 }
 
-.issues-prs-card:hover {
+.issues-prs-card:hover,
+.issues-prs-card:focus-within {
   box-shadow: 0 8px 32px rgba(99, 102, 241, 0.18), 0 2px 8px rgba(0, 0, 0, 0.10);
   transform: translateY(-4px) scale(1.01);
   border-color: #6366f1;
 }
 
-@media (max-width: 900px) {
-  .issues-prs-grid {
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-  }
 
-  .issues-prs-repo-columns {
-    flex-direction: column;
-    gap: 18px;
-    align-items: stretch;
-  }
+.issues-prs-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 22px 0;
+  color: var(--text, #191924);
+  text-align: left;
 }
 
-@media (max-width: 900px) {
-  .issues-prs-grid {
-    flex-direction: column;
-    gap: 24px;
-    align-items: center;
-  }
-
-  .repo-card-columns {
-    flex-direction: column;
-    gap: 18px;
-    align-items: stretch;
-  }
+body.dark .issues-prs-title {
+  color: #f3f4f6;
 }
 
-.issues-card, .prs-card {
-  flex: 1 1 340px;
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10), 0 1.5px 4px rgba(0, 0, 0, 0.08);
-  padding: 28px 24px 24px 24px;
-  min-width: 280px;
-  max-width: 420px;
+
+.issues-prs-flex {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  flex-direction: row;
+  gap: 32px;
+  align-items: stretch;
+  min-height: 120px;
+  width: 100%;
 }
 
-body.dark .issues-card, body.dark .prs-card {
-  background: var(--card-bg, #23232a);
-  color: var(--text, #fff);
+.issues-col {
+  flex: 1 1 0;
+  min-width: 0;
 }
 
-@media (max-width: 900px) {
-  .issues-prs-cards {
+.prs-col {
+  flex: 2 1 0;
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  .issues-prs-flex {
     flex-direction: column;
-    gap: 24px;
-    align-items: center;
+    gap: 16px;
+  }
+
+  .prs-col,
+  .issues-col {
+    flex: 1 1 0;
+    min-width: 0;
   }
 }
 
-/* Main container for Issues & PRs page */
+
+.issues-prs-divider {
+  width: 2px;
+  background: linear-gradient(to bottom, #ececec 60%, #cac6f5 100%);
+  border-radius: 2px;
+  margin: 0 16px;
+}
+
+@media (max-width: 800px) {
+  .issues-prs-divider {
+    display: none;
+  }
+}
+
+
+.issues-prs-header {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-weight: 600;
+  font-size: 1.08em;
+  margin-bottom: 11px;
+  color: var(--accent, #6366f1);
+}
+
+body.dark .issues-prs-header {
+  color: var(--accent-light, #86adfd);
+}
+
+
+.issues-badge,
+.prs-badge {
+  display: inline-block;
+  background-color: #6366f1;
+  color: #fff;
+  font-size: 0.98em;
+  font-weight: 600;
+  padding: 2.5px 9px;
+  border-radius: 12px;
+  margin-left: 4px;
+  min-width: 28px;
+  text-align: center;
+  letter-spacing: 0.02em;
+  box-shadow: 0 2px 8px #6366f111;
+}
+
+body.dark .issues-badge,
+body.dark .prs-badge {
+  background-color: #60a5fa;
+  color: #fff;
+}
+
+
+.issues-prs-list {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 1em;
+  line-height: 1.7;
+}
+
+.issues-prs-list li {
+  margin-bottom: 4px;
+  word-break: break-word;
+  padding-left: 2px;
+}
+
+.issues-prs-list a {
+  color: var(--accent, #6366f1);
+  text-decoration: underline;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.issues-prs-list a:hover,
+.issues-prs-list a:focus {
+  color: #7d35ec;
+}
+
+
+.issues-prs-list li[style*="opacity:0.6"] {
+  color: #999;
+  font-style: italic;
+}
+
+body.dark .issues-prs-list li[style*="opacity:0.6"] {
+  color: #bbb;
+}
+
 body {
   background: var(--bg, #fff);
   color: var(--text, #18181b);
 }
 
-#repos-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 16px 40px 16px;
-}
 
-main {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Page Title for Issues & PRs */
-.issues-prs-page-title {
-  font-size: 1.5rem;
-  font-weight: 700;
-  margin: 32px 0 18px 0;
-  text-align: center;
-  letter-spacing: -1px;
-  color: var(--accent, #6366f1);
-}
-
-body.dark .issues-prs-page-title {
-  color: var(--accent, #60a5fa);
-}
-
-/* Issues & PRs Analytics/Stats page-specific styles */
-.traffic-summary,
-.traffic-group,
-.traffic-summary-card,
-.traffic-table-wrap,
-.traffic-table,
-.traffic-group-title,
-.traffic-metric,
-.traffic-list,
-.traffic-no-data {
-  /* retain only analytics/statistics related css here */
-}
-
-/* Minimal realistic bundle: peeled from your original file */
-.traffic-summary {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
-
-.traffic-group {
-  border: 2px solid #e5e7eb;
-  background: #f4f4f7;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.06);
-  position: relative;
-  margin-bottom: 0;
-}
-
-body.dark .traffic-group {
-  border: 2px solid #23232a;
-  background: #23232a;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.12);
-  color: #fff;
-}
-
-.traffic-summary-card {
-  padding: 5px 10px 5px 10px;
-  min-height: unset;
-}
-
-.traffic-group-title {
-  font-size: 1.08rem;
-  font-weight: 600;
-  margin-bottom: 8px;
-  color: #6366f1;
-}
-
-body.dark .traffic-group-title {
-  color: #60a5fa;
-}
-
-.traffic-metric {
-  display: flex;
-  gap: 18px;
-  font-size: 1.05rem;
-  margin-bottom: 6px;
-}
-
-.traffic-list {
-  margin: 0;
-  padding-left: 18px;
-  font-size: 0.97rem;
-}
-
-.traffic-no-data {
-  color: #888;
-  font-size: 0.97rem;
-  margin: 0;
-}
-
-body.dark .traffic-no-data {
-  color: #aaa;
-}
-
-.traffic-table-wrap {
-  width: 100%;
-  overflow-x: auto;
-}
-
-.traffic-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.97rem;
-  margin-top: 6px;
-  background: transparent;
-}
-
-.traffic-table th,
-.traffic-table td {
-  padding: 6px 8px;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-.traffic-table th.value-col,
-.traffic-table td.value-col {
-  text-align: right;
-}
-
-.traffic-table th {
-  background: #f4f4f7;
-  font-weight: 600;
-  color: #6366f1;
-}
-
-@media (max-width: 600px) {
-
-  .traffic-table th,
-  .traffic-table td {
-    padding: 6px 4px;
-    font-size: 0.93rem;
+@media (max-width:600px) {
+  .issues-prs-card {
+    padding: 16px 4vw 14px 4vw;
   }
-}
 
-body.dark .traffic-table th {
-  background: #23232a;
-  color: #60a5fa;
-}
-
-body.dark .traffic-table td {
-  border-bottom: 1px solid #333;
-}
-
-.traffic-group-title.views::before {
-  content: "👁️ ";
-  margin-right: 2px;
-}
-
-.traffic-group-title.clones::before {
-  content: "🔄 ";
-  margin-right: 2px;
-}
-
-/* Responsive two-column for issues/prs inside card */
-.issues-prs-flex {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  align-items: stretch;
-  min-height: 120px;
-}
-
-@media (max-width: 900px) {
-  .issues-prs-flex {
-    flex-direction: column;
-    gap: 0;
+  .issues-prs-grid {
+    gap: 12px;
+    padding: 8px 0;
   }
 }

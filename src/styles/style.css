@@ -507,8 +507,9 @@ body {
 .repo-actions {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-top: auto;
+    align-items: center;
 }
 
 .repo-card hr {
