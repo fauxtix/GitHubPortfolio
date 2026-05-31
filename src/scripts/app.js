@@ -220,8 +220,8 @@ function renderRepositories(repos) {
     const card = document.createElement("div");
     card.className = "repo-card";
     card.innerHTML = `
-      <div class="repo-icon">${getLanguageIcon(repo.language)}</div>
       <div class="repo-header">
+        <div class="repo-icon">${getLanguageIcon(repo.language)}</div>
         <h2 class="repo-title">${repo.name}</h2>
         <span class="repo-language">
           ${repo.language || "Unknown"}

@@ -465,6 +465,21 @@ body {
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 6px;
+    padding: 14px 14px 10px 14px;
+    border-radius: 12px 12px 0 0;
+    background: var(--repo-header-gradient);
+    box-shadow: 0 2px 8px var(--shadow);
+    position: relative;
+    z-index: 1;
+}
+
+/* Theme-aware gradient for repo header */
+:root {
+    --repo-header-gradient: linear-gradient(90deg, #f3e8ff 0%, #e0e7ff 100%);
+}
+
+.dark {
+    --repo-header-gradient: linear-gradient(90deg, #312e81 0%, #6d28d9 100%);
 }
 
 .repo-title {
@@ -485,6 +500,12 @@ body {
     color: var(--accent-dark);
     margin-left: 8px;
     white-space: nowrap;
+}
+
+.dark .repo-language {
+    background: rgba(167, 139, 250, 0.22);
+    color: #fffbe8;
+    opacity: 0.95;
 }
 
 .repo-description {
