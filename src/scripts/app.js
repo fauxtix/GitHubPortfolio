@@ -5,12 +5,16 @@ function updateAuthBtn() {
   const token = sessionStorage.getItem("github_token");
   if (token) {
     authBtn.textContent = "🔓 Logout";
+    authBtn.title = "Logout from current session";
+    authBtn.setAttribute("aria-label", "Logout");
     authBtn.onclick = () => {
       sessionStorage.removeItem("github_token");
       window.location.reload();
     };
   } else {
     authBtn.textContent = "🔑 Login";
+    authBtn.title = "Login with GitHub token";
+    authBtn.setAttribute("aria-label", "Login");
     authBtn.onclick = () => {
       window.location.href = "./src/pages/login.html";
     };
