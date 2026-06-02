@@ -55,6 +55,7 @@ const languageFilter = document.getElementById("languageFilter");
 const clearSearchBtn = document.getElementById("clearSearchBtn");
 
 let repositories = [];
+let repoPrCounts = {};
 
 // --- SETTINGS MERGE ---
 // Merge user settings from localStorage into CONFIG
@@ -130,6 +131,25 @@ async function fetchWithCache(url, options = {}) {
   return data;
 }
 
+// Fetch open PR counts per repo for the user via one search API call
+async function fetchPrCounts(user, headers) {
+  const prMap = {};
+  try {
+    const url = `https://api.github.com/search/issues?q=user:${user}+type:pr+state:open&per_page=100`;
+    const data = await fetchWithCache(url, { headers });
+    if (Array.isArray(data.items)) {
+      data.items.forEach((item) => {
+        // repo name is the 5th segment of the repository_url path
+        const repoName = item.repository_url.split("/").pop();
+        prMap[repoName] = (prMap[repoName] || 0) + 1;
+      });
+    }
+  } catch {
+    /* non-critical, fall back to 0 */
+  }
+  return prMap;
+}
+
 async function loadRepositories() {
   const headers = {};
   const token = sessionStorage.getItem("github_token");
@@ -138,7 +158,10 @@ async function loadRepositories() {
   let errorMsg = null;
   try {
     const url = `${window.CONFIG?.apiBaseUrl || "https://api.github.com"}/users/${CONFIG.githubUser}/repos?sort=updated`;
-    data = await fetchWithCache(url, { headers });
+    [data, repoPrCounts] = await Promise.all([
+      fetchWithCache(url, { headers }),
+      fetchPrCounts(CONFIG.githubUser, headers),
+    ]);
   } catch (e) {
     errorMsg = "Network error while fetching repositories.";
     data = [];
@@ -219,8 +242,11 @@ function renderRepositories(repos) {
   repos.forEach((repo) => {
     const card = document.createElement("div");
     card.className = "repo-card";
+    const langClass = repo.language
+      ? `lang-${repo.language.toLowerCase().replace(/[^a-z0-9]/g, "-")}`
+      : "lang-unknown";
     card.innerHTML = `
-      <div class="repo-header">
+      <div class="repo-header ${langClass}">
         <div class="repo-icon">${getLanguageIcon(repo.language)}</div>
         <h2 class="repo-title">${repo.name}</h2>
         <span class="repo-language">
@@ -234,9 +260,11 @@ function renderRepositories(repos) {
       <hr/>
 
       <div class="repo-meta">
-        <span>⭐ ${repo.stargazers_count}</span>
-        <span>🍴 ${repo.forks_count}</span>
-        <span>🕒 ${new Date(repo.updated_at).toLocaleDateString()}</span>
+        <span class="repo-meta-item"><span class="repo-meta-icon">⭐</span> ${repo.stargazers_count}<small>Stars</small></span>
+        <span class="repo-meta-item"><span class="repo-meta-icon">🍴</span> ${repo.forks_count}<small>Forks</small></span>
+        <span class="repo-meta-item"><span class="repo-meta-icon">🐛</span> ${repo.open_issues_count - (repoPrCounts[repo.name] || 0)}<small>Issues</small></span>
+        <span class="repo-meta-item"><span class="repo-meta-icon">🔀</span> ${repoPrCounts[repo.name] || 0}<small>PRs</small></span>
+        <span class="repo-meta-item"><span class="repo-meta-icon">🕒</span> ${new Date(repo.updated_at).toLocaleDateString()}<small>Updated</small></span>
       </div>
 
       <div class="repo-actions">
@@ -449,22 +477,6 @@ const loadUserBtn = document.getElementById("loadUserBtn");
 if (githubUserInput && loadUserBtn) {
   // Set initial value from CONFIG
   githubUserInput.value = window.CONFIG.githubUser || "";
-  // Theme support: update input/button on theme change
-  function updateInputTheme() {
-    const isDark = document.body.classList.contains("dark");
-    githubUserInput.style.background = isDark ? "#18181b" : "#fffbe8";
-    githubUserInput.style.color = isDark ? "#fafafa" : "#18181b";
-    githubUserInput.style.borderColor = isDark ? "#444" : "#facc15";
-    loadUserBtn.style.background = isDark ? "#facc15" : "#fde047";
-    loadUserBtn.style.color = isDark ? "#18181b" : "#18181b";
-  }
-  updateInputTheme();
-  // Update on theme toggle
-  const observer = new MutationObserver(updateInputTheme);
-  observer.observe(document.body, {
-    attributes: true,
-    attributeFilter: ["class"],
-  });
 
   loadUserBtn.addEventListener("click", async () => {
     const newUser = githubUserInput.value.trim();

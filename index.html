@@ -74,10 +74,9 @@
     <section class="search-options">
         <!-- Left: GitHub user input and button -->
         <div class="search-user">
-            <input id="githubUserInput" type="text" aria-label="GitHub User" placeholder="GitHub User"
-                style="padding:0.25rem 0.75rem;border-radius:0.375rem;border:1px solid #444;background:var(--tw-bg-opacity, #18181b);color:inherit;min-width:180px;max-width:260px;outline:none;" />
+            <input id="githubUserInput" type="text" aria-label="GitHub User" placeholder="GitHub User" />
             <button id="loadUserBtn"
-                style="padding:0.25rem 0.75rem;border-radius:0.375rem;background:#facc15;color:#18181b;font-weight:500;border:none;cursor:pointer;">Load
+                style="border: 1px solid var(--border); border-radius: var(--radius); padding: 8px 16px; background: var(--button-bg); color: var(--button-text);">Load
                 Repos</button>
         </div>
         <!-- Center: Search bar, clear, filter -->
@@ -121,14 +120,14 @@
 
     <!-- SCRIPTS -->
     <script src="./src/scripts/config.js"></script>
-    <script>
+    <!-- <script>
         // Redirect to login if no token
         (function () {
             if (!sessionStorage.getItem('github_token')) {
                 window.location.href = './src/pages/login.html';
             }
         })();
-    </script>
+    </script> -->
     <script src="./src/scripts/app.js"></script>
 </body>
 
