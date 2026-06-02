@@ -653,7 +653,7 @@ body {
     background: var(--card-bg);
     border-radius: 20px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, .10), 0 1.5px 4px rgba(0, 0, 0, .08);
-    padding: 32px 32px 24px 32px;
+    padding: 32px 32px 12px 32px;
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-med);
     backdrop-filter: blur(8px);
     position: relative;
@@ -778,6 +778,22 @@ body {
     font-weight: 400;
     opacity: 0.8;
     margin-bottom: 12px;
+    line-height: 1.45;
+    min-height: calc(1.45em * 6);
+    max-height: calc(1.45em * 6);
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+}
+
+.repo-description::-webkit-scrollbar {
+    width: 8px;
+}
+
+.repo-description::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
 }
 
 .repo-language {

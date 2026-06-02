@@ -260,11 +260,11 @@ function renderRepositories(repos) {
       <hr/>
 
       <div class="repo-meta">
-        <span class="repo-meta-item"><span class="repo-meta-icon">⭐</span> ${repo.stargazers_count}<small>Stars</small></span>
-        <span class="repo-meta-item"><span class="repo-meta-icon">🍴</span> ${repo.forks_count}<small>Forks</small></span>
-        <span class="repo-meta-item"><span class="repo-meta-icon">🐛</span> ${repo.open_issues_count - (repoPrCounts[repo.name] || 0)}<small>Issues</small></span>
-        <span class="repo-meta-item"><span class="repo-meta-icon">🔀</span> ${repoPrCounts[repo.name] || 0}<small>PRs</small></span>
-        <span class="repo-meta-item"><span class="repo-meta-icon">🕒</span> ${new Date(repo.updated_at).toLocaleDateString()}<small>Updated</small></span>
+        <span class="repo-meta-item"><small>Stars</small>${repo.stargazers_count}</span>
+        <span class="repo-meta-item"><small>Forks</small>${repo.forks_count}</span>
+        <span class="repo-meta-item"><small>Issues</small>${repo.open_issues_count - (repoPrCounts[repo.name] || 0)}</span>
+        <span class="repo-meta-item"><small>PRs</small>${repoPrCounts[repo.name] || 0}</span>
+        <span class="repo-meta-item"><small>Updated</small>${new Date(repo.updated_at).toLocaleDateString()}</span>
       </div>
 
       <div class="repo-actions">
